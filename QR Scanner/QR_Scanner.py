@@ -53,7 +53,6 @@ while(1):
 
     display(inputImage, decodedObjects)
     cv2.imshow("Result",inputImage)
-    vid_writer.write(inputImage)
     k = cv2.waitKey(20)
     if k == 27:
         break
