@@ -10,5 +10,9 @@ def test1():
     print k
     cv2.destroyAllWindows()
 
+def Testfunctie():
+    test=True
+    testreturn = "yetsd"
+    return testreturn
 
-test1()
+print (Testfunctie())
