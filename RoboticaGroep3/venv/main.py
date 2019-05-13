@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import math
+from Motor import Motor
 
 
 def test1():
@@ -11,8 +12,8 @@ def test1():
     cv2.destroyAllWindows()
 
 def Testfunctie():
-    test=True
-    testreturn = "yetsd"
+    motor1 = Motor(1, 2, 3)
+    testreturn = motor1.getTest()
     return testreturn
 
 print (Testfunctie())
