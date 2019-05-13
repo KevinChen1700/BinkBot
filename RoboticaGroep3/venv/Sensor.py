@@ -1,3 +1,6 @@
+import RPi.GPIO as GPIO
+import time
+
 class Sensor:
 
     def __init__(self, trigger, echo):
