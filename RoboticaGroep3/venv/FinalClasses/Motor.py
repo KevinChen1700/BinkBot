@@ -19,8 +19,14 @@ class Motor:
     def off(self):
             self.pi.set_PWM_dutycycle(self.PWM, 0)
 
-    def move(self, right, left, speed):
-        GPIO.output(self.INA, right)  # ina op 1 instellen inb op 0, zodat motor naar rechts draait
-        GPIO.output(self.INB, left)
+    def move(self, direction, speed):
+        if self.speed > 0 & self.speed <= 20: # speeds between 0 and 20 are unsafe
+            speed = 20
+        if direction == "right" | direction == "r":
+            GPIO.output(self.INA, 1)
+            GPIO.output(self.INB, 0)
+        else:
+            GPIO.output(self.INA, 0)
+            GPIO.output(self.INB, 1)
         sleep(0.01)  # wait 10ms
-        self.pi.set_PWM_dutycycle(self.PWM, speed)  # nieuwe snelheid als pwm instellen
+        self.pi.set_PWM_dutycycle(self.PWM, speed)
