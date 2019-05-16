@@ -1,0 +1,111 @@
+from Tkinter import *
+import RPi.GPIO as GPIO
+import socket
+from Joystick import Joystick
+import spidev
+import time
+import os
+
+
+# Here, we are creating our class, Window, and inheriting from the Frame
+# class. Frame is a class from the tkinter module. (see Lib/tkinter/__init__)
+class Window(Frame):
+
+    # Define settings upon initialization. Here you can specify
+    def __init__(self, master=None):
+        # parameters that you want to send through the Frame class.
+        Frame.__init__(self, master)
+
+        # reference to the master widget, which is the tk window
+        self.master = master
+
+        # with that, we want to then run init_window, which doesn't yet exist
+        self.init_window()
+
+        # wifi server code
+        # HOST='141.252.230.54'
+        HOST = '141.252.29.24'
+        PORT = 5002
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.bind((HOST, PORT))
+        s.listen(1)
+        conn, addr = s.accept()
+        s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+        print 'Connected by', addr
+        GPIO.setmode(GPIO.BCM)
+
+        self.Joystick1 = Joystick(1, 2)
+
+    # Creation of init_window
+    def init_window(self):
+        # changing the title of our master widget
+        self.master.title("GUI")
+
+        # allowing the widget to take the full space of the root window
+        self.pack(fill=BOTH, expand=1)
+
+        # creating a button instance
+        sdansButton = Button(self, text="Single Dans", relief=RIDGE, bg="black", fg="white", command=self.client_sdans)
+        sdansButton.place(x=10, y=20)
+
+        ldansButton = Button(self, text="Line Dans", relief=RIDGE, bg="black", fg="white", command=self.client_ldans)
+        ldansButton.place(x=10, y=70)
+
+        trapButton = Button(self, text="Survival Run", relief=RIDGE, bg="black", fg="white", command=self.client_trap)
+        trapButton.place(x=140, y=20)
+
+        eggButton = Button(self, text="Eggtelligence", relief=RIDGE, bg="black", fg="white", command=self.client_egg)
+        eggButton.place(x=140, y=70)
+
+        flagButton = Button(self, text="Capture the flag", relief=RIDGE, bg="black", fg="white",
+                            command=self.client_flag)
+        flagButton.place(x=270, y=20)
+
+        shootButton = Button(self, text="Cancel mode", relief=RIDGE, bg="black", fg="white", command=self.cancel_mode)
+        shootButton.place(x=270, y=70)
+
+        # label to show outputs of the pi
+        global lbl
+        lbl = Label(self, text="output scherm ", width=50, height=7, wraplength=300, bg="white")
+        lbl.place(x=10, y=120)
+
+        # event handler voor als de buttons gedrukt zijn
+        def client_sdans(self):
+            lbl.config(text="doing single dans..")
+            conn.send('A')
+
+    def client_ldans(self):
+        lbl.config(text="doing line dans..")
+        conn.send('B')
+
+    def client_trap(self):
+        lbl.config(text="doing survival run..")
+        conn.send('C')
+
+    def client_egg(self):
+        lbl.config(text="doing eggtelligence run..")
+        conn.send('D')
+
+    def client_flag(self):
+        lbl.config(text="doing capture the flag..")
+        conn.send('E')
+
+    def cancel_mode(self):
+        lbl.config(text="cancelling current mode..")
+        conn.send('F')
+
+    while True:
+        conn.send(Joystick1.x_pos)
+
+
+# root window created. Here, that would be the only window, but
+# you can later have windows within windows.
+root = Tk()
+
+root.geometry("390x250")
+
+# creation of an instance
+app = Window(root)
+
+# mainloop
+root.mainloop()
