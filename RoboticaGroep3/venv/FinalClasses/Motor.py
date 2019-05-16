@@ -5,11 +5,11 @@ import pigpio
 
 class Motor:
 
-    def __init__(self, PWM, INA, INB):
+    def __init__(self, pinArray):
         self.pi = pigpio.pi()
-        self.PWM = PWM
-        self.INA = INA
-        self.INB = INB
+        self.PWM = pinArray[0]
+        self.INA = pinArray[1]
+        self.INB = pinArray[2]
         GPIO.setup(PWM, GPIO.OUT)
         self.pi.set_mode(PWM, pigpio.OUTPUT)
         GPIO.setup(INA, GPIO.OUT)
@@ -17,7 +17,7 @@ class Motor:
         self.pi.set_PWM_frequency(self.PWM, 100)
 
     def off(self):
-            self.pi.set_PWM_dutycycle(self.PWM, 0)
+        self.pi.set_PWM_dutycycle(self.PWM, 0)
 
     def move(self, direction, speed):
         if self.speed > 0 & self.speed <= 20: # speeds between 0 and 20 are unsafe
