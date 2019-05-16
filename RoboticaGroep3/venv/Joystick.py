@@ -13,16 +13,21 @@ class Joystick:
         self.spi = spidev.SpiDev()
         self.spi.open(pin1, pin2)
         self.spi.max_speed_hz = 1000000
+        test(self)
 
-    def readChannel(channel):
+    def readChannel(self, channel):
         adc = self.spi.xfer2([1, (8 + channel) << 4, 0])
         data = ((adc[1] & 3) << 8) + adc[2]
         return data
 
-    # endless loop
-    while True:
-        # Determine position
-        self.x_pos = readChannel(1)
-        self.y_pos = readChannel(2)
+    def getX(self):
+        return self.x_pos
+
+    def test(self):
+        # endless loop
+        while True:
+            # Determine position
+            self.x_pos = readChannel(1)
+            self.y_pos = readChannel(2)
 
 

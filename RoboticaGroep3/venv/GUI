@@ -6,7 +6,6 @@ import spidev
 import time
 import os
 
-
 # Here, we are creating our class, Window, and inheriting from the Frame
 # class. Frame is a class from the tkinter module. (see Lib/tkinter/__init__)
 class Window(Frame):
@@ -24,17 +23,18 @@ class Window(Frame):
 
         # wifi server code
         # HOST='141.252.230.54'
-        HOST = '141.252.29.24'
-        PORT = 5002
-        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.bind((HOST, PORT))
-        s.listen(1)
-        conn, addr = s.accept()
-        s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
+        self.HOST = '141.252.29.24'
+        self.PORT = 5002
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.bind((self.HOST, self.PORT))
+        self.s.listen(1)
+        self.conn, self.addr = self.s.accept()
+        self.s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         print 'Connected by', addr
         GPIO.setmode(GPIO.BCM)
 
         self.Joystick1 = Joystick(1, 2)
+        self.test(self)
 
     # Creation of init_window
     def init_window(self):
@@ -76,26 +76,27 @@ class Window(Frame):
 
     def client_ldans(self):
         lbl.config(text="doing line dans..")
-        conn.send('B')
+        self.conn.send('B')
 
     def client_trap(self):
         lbl.config(text="doing survival run..")
-        conn.send('C')
+        self.conn.send('C')
 
     def client_egg(self):
         lbl.config(text="doing eggtelligence run..")
-        conn.send('D')
+        self.conn.send('D')
 
     def client_flag(self):
         lbl.config(text="doing capture the flag..")
-        conn.send('E')
+        self.conn.send('E')
 
     def cancel_mode(self):
         lbl.config(text="cancelling current mode..")
-        conn.send('F')
+        self.conn.send('F')
 
-    while True:
-        conn.send(Joystick1.x_pos)
+    def test(self):
+        while True:
+            self.conn.send(self.Joystick1.getX())
 
 
 # root window created. Here, that would be the only window, but
