@@ -9,6 +9,60 @@ class WheelController:
 
 
     def move(self, x, y):
+        speedvariabele = (y - 511.5) / 5.115
+        turnvariabele = (x - 511.5) / 5.115
+
+        # if the joystick is aimed to the right
+        if turnvariabele > 10:
+            # if the joystick is aimed to the right and up
+            if speedvariabele > 10:
+                self.leftMotor.move("left", speedvariabele)
+                self.rightMotor.move("right", speedvariabele * ((100 - turnvariabele) / 100))
+            # if the joystick is aimed to the right and down
+            elif speedvariabele < -10:
+                self.leftMotor.move("right", (speedvariabele * -1))
+                self.rightMotor.move("left", (speedvariabele * -1) * ((100 - turnvariabele) / 100))
+            # if the joystick is aimed solely to the right
+            else:
+                self.leftMotor.move("left", turnvariabele)
+                self.rightMotor.move("left", turnvariabele)
+
+        # if the joystick is aimed to the left
+        elif turnvariabele < -10:
+            # if the joystick is aimed to the left and up
+            if speedvariabele > 10:
+                self.leftMotor.move("left", speedvariabele * ((100 + turnvariabele) / 100))
+                self.rightMotor.move("right", speedvariabele)
+            # if the joystick is aimed to the left and down
+            elif speedvariabele < -10:
+                self.leftMotor.move("right", (speedvariabele * -1) * ((100 + turnvariabele) / 100))
+                self.rightMotor.move("left", (speedvariabele * -1))
+            # if the joystick is aimed solely to the left
+            else:
+                self.leftMotor.move("right", (turnvariabele * -1))
+                self.rightMotor.move("right", (turnvariabele * -1))
+
+        # if the joystick is aimed neither to the left or the right
+        else:
+            # if the joystick is aimed solely up
+            if speedvariabele > 10:
+                self.leftMotor.move("left", speedvariabele)
+                self.rightMotor.move("right", speedvariabele)
+            # if the joystick is aimed solely down
+            elif speedvariabele < -10:
+                self.leftMotor.move("right", (speedvariabele * -1))
+                self.rightMotor.move("left", (speedvariabele * -1))
+            # if the joystick is not being used
+            else:
+                self.leftMotor.off()
+                self.rightMotor.off()
+
+
+
+
+
+
+
         
 
 

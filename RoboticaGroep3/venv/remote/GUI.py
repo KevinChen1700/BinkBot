@@ -6,37 +6,25 @@ import spidev
 import time
 import os
 
-# Here, we are creating our class, Window, and inheriting from the Frame
-# class. Frame is a class from the tkinter module. (see Lib/tkinter/__init__)
+
 class Window(Frame):
 
-    # Define settings upon initialization. Here you can specify
     def __init__(self, master=None):
-        # parameters that you want to send through the Frame class.
-        Frame.__init__(self, master)
-
-        # reference to the master widget, which is the tk window
-        self.master = master
-
-        # with that, we want to then run init_window, which doesn't yet exist
-        self.init_window()
-
-        # wifi server code
-        # HOST='141.252.230.54'
-        self.HOST = '141.252.29.24'
+        self.lastPressed = ' '
+        self.HOST = '141.252.230.54'
         self.PORT = 5002
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bind((self.HOST, self.PORT))
         self.s.listen(1)
         self.conn, self.addr = self.s.accept()
         self.s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
-        print 'Connected by', addr
-        GPIO.setmode(GPIO.BCM)
-
+        print 'Connected by', self.addr
+        GPIO.setmsode(GPIO.BCM)
         self.Joystick1 = Joystick(1, 2)
-        self.test(self)
+        Frame.__init__(self, master)
+        self.master = master
+        self.init_window()
 
-    # Creation of init_window
     def init_window(self):
         # changing the title of our master widget
         self.master.title("GUI")
@@ -57,56 +45,53 @@ class Window(Frame):
         eggButton = Button(self, text="Eggtelligence", relief=RIDGE, bg="black", fg="white", command=self.client_egg)
         eggButton.place(x=140, y=70)
 
-        flagButton = Button(self, text="Capture the flag", relief=RIDGE, bg="black", fg="white",
-                            command=self.client_flag)
+        flagButton = Button(self, text="Capture the flag", relief=RIDGE, bg="black", fg="white", command=self.client_flag)
         flagButton.place(x=270, y=20)
 
-        shootButton = Button(self, text="Cancel mode", relief=RIDGE, bg="black", fg="white", command=self.cancel_mode)
-        shootButton.place(x=270, y=70)
+        manualButton = Button(self, text="Manual mode", relief=RIDGE, bg="black", fg="white", command=self.manual_mode)
+        manualButton.place(x=270, y=70)
 
         # label to show outputs of the pi
         global lbl
         lbl = Label(self, text="output scherm ", width=50, height=7, wraplength=300, bg="white")
         lbl.place(x=10, y=120)
 
-        # event handler voor als de buttons gedrukt zijn
-        def client_sdans(self):
-            lbl.config(text="doing single dans..")
-            conn.send('A')
+    # event handler voor als de buttons gedrukt zijn
+    def client_sdans(self):
+        lbl.config(text="doing single dans..")
+        self.lastPressed = "sdans"
 
     def client_ldans(self):
         lbl.config(text="doing line dans..")
-        self.conn.send('B')
+        self.lastPressed = "ldans"
 
     def client_trap(self):
         lbl.config(text="doing survival run..")
-        self.conn.send('C')
+        self.lastPressed = "srun"
 
     def client_egg(self):
         lbl.config(text="doing eggtelligence run..")
-        self.conn.send('D')
+        self.lastPressed = "etelligence"
 
     def client_flag(self):
         lbl.config(text="doing capture the flag..")
-        self.conn.send('E')
+        self.lastPressed = "ctf"
 
-    def cancel_mode(self):
+    def manual_mode(self):
         lbl.config(text="cancelling current mode..")
-        self.conn.send('F')
+        self.lastPressed = "man"
 
-    def test(self):
-        while True:
-            self.conn.send(self.Joystick1.getX())
+    def sendstate(self):
+        datastring = str(self.Joystick1.getX()) + "-" + str(self.Joystick1.getY()) + "-" + self.lastPressed
+        self.conn.send(datastring)
 
 
-# root window created. Here, that would be the only window, but
-# you can later have windows within windows.
+
 root = Tk()
-
 root.geometry("390x250")
-
-# creation of an instance
 app = Window(root)
+while True:
+    root.update_idletasks()
+    root.update()
+    Window.sendstate(app)
 
-# mainloop
-root.mainloop()

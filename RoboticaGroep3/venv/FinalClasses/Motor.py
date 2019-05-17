@@ -21,7 +21,7 @@ class Motor:
 
     def move(self, direction, speed):
         if self.speed > 0 & self.speed <= 20: # speeds between 0 and 20 are unsafe
-            speed = 20
+            speed = 0
         if direction == "right" | direction == "r":
             GPIO.output(self.INA, 1)
             GPIO.output(self.INB, 0)
