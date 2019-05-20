@@ -1,11 +1,25 @@
 from Motor import Motor
 
 
-class WheelController:
+class MovementController:
+    __instance = None
+    @staticmethod
+    def getInstance():
+        if MovementController.__instance == None:
+            MovementController()
+        return MovementController.__instance
 
-    def __init__(self, pinArray):
-        self.leftMotor = Motor(pinArray[0])
-        self.rightMotor = Motor(pinArray[1])
+    def __init__(self):
+        if MovementController.__instance != None:
+            raise Exception("This class is a singelton!")
+        else:
+            pinArray = [[16,5,6],[20,23,24]]
+
+            print(pinArray[0])
+            print(pinArray[1])
+
+            self.leftMotor = Motor(pinArray[0])
+            self.rightMotor = Motor(pinArray[1])
 
 
     def move(self, x, y):

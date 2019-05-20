@@ -11,89 +11,73 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/FinalClasses/DistanceSensor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/FinalClasses/WheelController.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/remote/remotetest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/venv/remote/Remote.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/remote/GUI.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="756">
-              <caret line="36" column="37" selection-start-line="36" selection-start-column="37" selection-end-line="36" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/remote/Joystick.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/joystickfix.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="46" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="46" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/venv/FinalClasses/DistanceSensor.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="315">
+                  <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#0#23#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="210">
+                  <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/venv/FinalClasses/MovementController.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="441">
+                  <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/venv/FinalClasses/movementtest.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="63">
+                  <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/venv/remote/Remote.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="252">
+                  <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="28" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/venv/remote/Remote.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state>
+                  <caret line="12" column="22" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="28" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -130,11 +114,15 @@
         <option value="$PROJECT_DIR$/venv/Joystick.py" />
         <option value="$PROJECT_DIR$/venv/remote/Joystick.py" />
         <option value="$PROJECT_DIR$/venv/remote/GUI.py" />
-        <option value="$PROJECT_DIR$/venv/FinalClasses/Motor.py" />
-        <option value="$PROJECT_DIR$/venv/FinalClasses/WheelController.py" />
         <option value="$PROJECT_DIR$/venv/FinalClasses/Remote.py" />
-        <option value="$PROJECT_DIR$/venv/remote/remotetest.py" />
         <option value="$PROJECT_DIR$/venv/remote/Remote.py" />
+        <option value="$PROJECT_DIR$/venv/FinalClasses/WheelController.py" />
+        <option value="$PROJECT_DIR$/venv/remote/remotetest.py" />
+        <option value="$PROJECT_DIR$/venv/FinalClasses/testfile.py" />
+        <option value="$PROJECT_DIR$/venv/FinalClasses/test.py" />
+        <option value="$PROJECT_DIR$/venv/FinalClasses/Motor.py" />
+        <option value="$PROJECT_DIR$/venv/FinalClasses/MovementController.py" />
+        <option value="$PROJECT_DIR$/venv/FinalClasses/movementtest.py" />
       </list>
     </option>
   </component>
@@ -150,7 +138,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,17 +184,11 @@
               <item name="venv" type="462c0819:PsiDirectoryNode" />
               <item name="FinalClasses" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="RoboticaGroep3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="&lt; Python 2.7 (RoboticaGroep3) &gt;" type="70bed36:NamedLibraryElementNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-              <item name="remote" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -248,29 +229,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.remotetest">
-    <configuration name="Sensor" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="RoboticaGroep3" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="D:\git\git\BinkRepository\RoboticaGroep3\venv\FinalClasses\DistanceSensor.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.movementtest">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RoboticaGroep3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -293,6 +252,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="movementtest" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="RoboticaGroep3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/FinalClasses" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/FinalClasses/movementtest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="remotetest" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="RoboticaGroep3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -307,6 +288,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/remote/remotetest.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="RoboticaGroep3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/venv/FinalClasses" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv/FinalClasses/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -339,10 +342,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.movementtest" />
+        <item itemvalue="Python.test" />
+        <item itemvalue="Python.test (1)" />
         <item itemvalue="Python.remotetest" />
         <item itemvalue="Python.main" />
-        <item itemvalue="Python.test" />
-        <item itemvalue="Python.Sensor" />
       </list>
     </recent_temporary>
   </component>
@@ -366,23 +370,24 @@
       <workItem from="1557907401949" duration="4002000" />
       <workItem from="1557992868134" duration="10923000" />
       <workItem from="1558077450409" duration="11401000" />
-      <workItem from="1558342984493" duration="3140000" />
+      <workItem from="1558342984493" duration="4353000" />
+      <workItem from="1558347538375" duration="815000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54693000" />
+    <option name="totallyTimeSpent" value="56721000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-1089" width="1938" height="1098" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13841201" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14002146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4282655" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.5535332" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -404,10 +409,12 @@
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/RoboticaGroep3$movementtest.coverage" NAME="movementtest Coverage Results" MODIFIED="1558349633411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/FinalClasses" />
     <SUITE FILE_PATH="coverage/RoboticaGroep3$main.coverage" NAME="main Coverage Results" MODIFIED="1557740249584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
     <SUITE FILE_PATH="coverage/RoboticaGroep3$Sensor.coverage" NAME="Sensor Coverage Results" MODIFIED="1557226250016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/RoboticaGroep3$test__1_.coverage" NAME="test (1) Coverage Results" MODIFIED="1558347661635" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/FinalClasses" />
     <SUITE FILE_PATH="coverage/RoboticaGroep3$remotetest.coverage" NAME="remotetest Coverage Results" MODIFIED="1558345443904" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv/remote" />
-    <SUITE FILE_PATH="coverage/RoboticaGroep3$test.coverage" NAME="test Coverage Results" MODIFIED="1557738852388" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/RoboticaGroep3$test.coverage" NAME="test Coverage Results" MODIFIED="1558347668780" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/venv/Wheel.py" />
@@ -421,16 +428,6 @@
     <entry file="file://$USER_HOME$/Downloads/JoystickConnectie.py" />
     <entry file="file://$PROJECT_DIR$/venv/Joystick.py" />
     <entry file="file://$PROJECT_DIR$/venv/GUI" />
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/DistanceSensor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/remote/GUI.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="756">
@@ -440,9 +437,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Remote.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/joystickfix.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -458,34 +452,53 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/WheelController.py">
+    <entry file="file://$PROJECT_DIR$/venv/remote/remotetest.py" />
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/testfile.py" />
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Remote.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+        <state relative-caret-position="84">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/DistanceSensor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        <state relative-caret-position="315">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/remote/remotetest.py">
+    <entry file="file://$PROJECT_DIR$/venv/remote/Remote.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="252">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/remote/Remote.py">
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+        <state relative-caret-position="210">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/MovementController.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/movementtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
         </state>
       </provider>
     </entry>

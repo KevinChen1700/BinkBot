@@ -1,12 +1,14 @@
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from time import sleep
-import pigpio
+#import pigpio
+
+
 
 
 class Motor:
 
     def __init__(self, pinArray):
-        self.pi = pigpio.pi()
+        #self.pi = pigpio.pi()
         self.PWM = pinArray[0]
         self.INA = pinArray[1]
         self.INB = pinArray[2]
