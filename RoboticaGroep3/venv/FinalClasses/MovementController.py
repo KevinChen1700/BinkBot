@@ -1,9 +1,17 @@
 from Motor import Motor
 
 
-class WheelController:
+class MovementController:
+
+    __instance = None
+
+    @staticmethod
+    def getInstance():
+        if MovementController.__instance == None:
+
 
     def __init__(self, pinArray):
+
         self.leftMotor = Motor(pinArray[0])
         self.rightMotor = Motor(pinArray[1])
 

@@ -1,23 +1,46 @@
 import RPi.GPIO as GPIO
-import spidev
-import os
+import time
+import sys
 
 
 class Joystick:
+    __instance = None
+    @staticmethod
+    def getInstance():
+        if Joystick.__instance == None:
+            Joystick()
+        return Joystick.__instance
 
-    def __init__(self, pin1, pin2):
-        self.spi = spidev.SpiDev()
-        self.spi.open(pin1, pin2)
-        self.spi.max_speed_hz = 1000000
+    def __init__(self):
+        if Joystick.__instance != None:
+            print("Singleton class already has an instance")
+        else:
+            Joystick.__instance = self
+            GPIO.setmode(GPIO.BCM)
+            setupSpiPins(21, 19, 20, 16)
 
-    def readChannel(self, channel):
-        adc = self.spi.xfer2([1, (8 + channel) << 4, 0])
-        data = ((adc[1] & 3) << 8) + adc[2]
-        return data
+    def setupSpiPins(clkPin, misoPin, mosiPin, csPin):
+        pass
 
-    def getX(self):
-        return self.readChannel(1)
+    def readChannel(channel):
+        if (channel < 0) or (channel > 7):
+            print "Invalid ADC Channel number, must be between [0,7]"
+            return -1
 
-    def getY(self):
-        return self.readChannel(2)
+        read_command = 0x18
+        read_command |= channel
 
+        sendBits(read_command, 5, 18, 23)
+
+        adcValue = recvBits(12, 18, 24)
+
+        return adcValue
+
+    def sendBits(data, numBits, clkPin, mosiPin):
+        data <<= (8 - numBits)
+        for bit in range(numBits):
+            pass
+
+    def recvBits(numBits, clkPin, misoPin):
+        retVal = 0
+        return (retVal / 2)

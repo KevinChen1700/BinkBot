@@ -20,7 +20,7 @@ class Window(Frame):
         self.s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         print 'Connected by', self.addr
         GPIO.setmsode(GPIO.BCM)
-        self.Joystick1 = Joystick(1, 2)
+        self.joystickBus = Joystick.getInstance()
         Frame.__init__(self, master)
         self.master = master
         self.init_window()
@@ -82,7 +82,7 @@ class Window(Frame):
         self.lastPressed = "man"
 
     def sendstate(self):
-        datastring = str(self.Joystick1.getX()) + "-" + str(self.Joystick1.getY()) + "-" + self.lastPressed
+        datastring = str(self.joystickBus.readChannel(0)) + "-" + str(self.joystickBus.readChannel(1)) + "-" + str(self.joystickBus.readChannel(2)) + "-" + str(self.joystickBus.readChannel(3)) + "-" + self.lastPressed
         self.conn.send(datastring)
 
 
