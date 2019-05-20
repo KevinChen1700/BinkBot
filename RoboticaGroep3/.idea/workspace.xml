@@ -14,6 +14,18 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="105">
+                  <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+                  <folding>
+                    <element signature="e#0#23#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/venv/FinalClasses/DistanceSensor.py">
               <provider selected="true" editor-type-id="text-editor">
@@ -27,15 +39,6 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/venv/FinalClasses/MovementController.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="441">
@@ -44,7 +47,7 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/venv/FinalClasses/movementtest.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="63">
@@ -120,16 +123,16 @@
         <option value="$PROJECT_DIR$/venv/remote/remotetest.py" />
         <option value="$PROJECT_DIR$/venv/FinalClasses/testfile.py" />
         <option value="$PROJECT_DIR$/venv/FinalClasses/test.py" />
-        <option value="$PROJECT_DIR$/venv/FinalClasses/Motor.py" />
         <option value="$PROJECT_DIR$/venv/FinalClasses/MovementController.py" />
         <option value="$PROJECT_DIR$/venv/FinalClasses/movementtest.py" />
+        <option value="$PROJECT_DIR$/venv/FinalClasses/Motor.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
+    <option name="x" value="-80" />
     <option name="y" value="-1089" />
-    <option name="width" value="1938" />
+    <option name="width" value="1932" />
     <option name="height" value="1098" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -371,12 +374,12 @@
       <workItem from="1557992868134" duration="10923000" />
       <workItem from="1558077450409" duration="11401000" />
       <workItem from="1558342984493" duration="4353000" />
-      <workItem from="1558347538375" duration="815000" />
+      <workItem from="1558347538375" duration="976000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56721000" />
+    <option name="totallyTimeSpent" value="56882000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-1089" width="1938" height="1098" extended-state="6" />
@@ -481,10 +484,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/movementtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        <state relative-caret-position="63">
+          <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
         </state>
       </provider>
     </entry>
@@ -495,10 +498,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/movementtest.py">
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="48" selection-start-line="3" selection-start-column="48" selection-end-line="3" selection-end-column="48" />
+        <state relative-caret-position="105">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
