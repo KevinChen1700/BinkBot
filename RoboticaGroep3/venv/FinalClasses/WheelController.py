@@ -9,8 +9,9 @@ class WheelController:
 
 
     def move(self, x, y):
-        speedvariabele = (y - 511.5) / 5.115
-        turnvariabele = (x - 511.5) / 5.115
+        # turns the value from the joystick (0 up to 1023) into a value between -100 and 100
+        speedvariabele = (y / -5.115) + 100  # joystick value 0 turns into 100, joystick value 1023 turns into -100
+        turnvariabele = (x - 511.5) / 5.115  # joystick value 1023 turns into 100, joystick value 0 turns into -100
 
         # if the joystick is aimed to the right
         if turnvariabele > 10:
