@@ -19,7 +19,7 @@ class Window(Frame):
         self.conn, self.addr = self.s.accept()
         self.s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
         print 'Connected by', self.addr
-        GPIO.setmsode(GPIO.BCM)
+        GPIO.setmode(GPIO.BCM)
         self.joystickBus = Joystick.getInstance()
         Frame.__init__(self, master)
         self.master = master
