@@ -7,11 +7,12 @@ import time
 import os
 
 
+
 class Window(Frame):
 
     def __init__(self, master=None):
         self.lastPressed = ' '
-        self.HOST = '141.252.230.54'
+        self.HOST = '141.252.230.71'
         self.PORT = 5002
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bind((self.HOST, self.PORT))
@@ -84,6 +85,7 @@ class Window(Frame):
     def sendstate(self):
         datastring = str(self.joystickBus.readChannel(0)) + "-" + str(self.joystickBus.readChannel(1)) + "-" + str(self.joystickBus.readChannel(2)) + "-" + str(self.joystickBus.readChannel(3)) + "-" + self.lastPressed
         self.conn.send(datastring)
+        print(datastring)
 
 
 
@@ -94,4 +96,4 @@ while True:
     root.update_idletasks()
     root.update()
     Window.sendstate(app)
-
+    time.sleep(0.1)
