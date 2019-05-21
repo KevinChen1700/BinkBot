@@ -83,6 +83,8 @@ class Window(Frame):
         self.lastPressed = "man"
 
     def sendstate(self):
+        #ER MOET NOG UITGEZOCHT WORDEN WELKE CHANNEL WAT IS PLUS SOMMIGE CHANNELS STAAN WAARSCHIJNLIJK PRECIES OMGEKEERD
+        #DAAR IS DUS DE STICK OMHOOG BIJV 0 IPV 1023
         datastring = str(self.joystickBus.readChannel(0)) + "-" + str(self.joystickBus.readChannel(1)) + "-" + str(self.joystickBus.readChannel(2)) + "-" + str(self.joystickBus.readChannel(3)) + "-" + self.lastPressed
         self.conn.send(datastring)
         print(datastring)
