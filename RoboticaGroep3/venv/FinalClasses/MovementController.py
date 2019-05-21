@@ -1,5 +1,5 @@
 from Motor import Motor
-
+import AX12
 
 class MovementController:
     __instance = None
@@ -20,6 +20,9 @@ class MovementController:
 
             self.leftMotor = Motor(pinArray[0])
             self.rightMotor = Motor(pinArray[1])
+
+            self.servos = AX12.Ax12()
+            self.servospeed = 200
 
 
     def move(self, x, y):
@@ -80,6 +83,23 @@ class MovementController:
                 print("Joystick wordt niet gebruikt")
                 self.leftMotor.off()
                 self.rightMotor.off()
+
+
+    def mapdeg(self,x):
+        return (int)((x - 30) * (1023 - 0) / (330 - 30));
+
+    def moveFront(self, id, angle):
+        self.servos.moveSpeedRW(id, self.mapdeg(angle), self.servospeed)
+        #testen wat dit doet
+        self.servos.action()
+
+    def getTemp(self, id):
+        for x in id:
+            print("Servo" + str(x) + "Temp: " + str(self.servos.readTemperature(x)) + "°C")
+
+
+
+
 
 
 

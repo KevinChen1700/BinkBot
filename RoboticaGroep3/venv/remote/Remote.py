@@ -11,7 +11,7 @@ class Remote:
 
     def __init__(self):
         if Remote.__instance != None:
-            raise Exception("This class is a singleton!")
+            print("Singleton class already has an instance")
         else:
             Remote.__instance = self
             HOST = "141.252.230.54"

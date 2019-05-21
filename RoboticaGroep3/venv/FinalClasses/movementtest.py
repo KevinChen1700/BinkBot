@@ -1,8 +1,8 @@
-from MovementController import MovementController
+#from MovementController import MovementController
 
-controller = MovementController()
-controller2 = MovementController().getInstance()
+#controller = MovementController()
 
 
-print(controller)
-print(controller2)
+array = [1,2,3,4]
+
+print(len(array))
