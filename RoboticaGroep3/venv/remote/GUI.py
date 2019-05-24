@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from Tkinter import *
 import RPi.GPIO as GPIO
 import socket
@@ -5,15 +6,18 @@ from Joystick import Joystick
 import spidev
 import time
 import os
-
+import commands
 
 
 class Window(Frame):
 
     def __init__(self, master=None):
         self.lastPressed = ' '
-        self.HOST = '141.252.230.71'
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.s.connect(("8.8.8.8",80))
+        self.HOST = self.s.getsockname()[0]
         self.PORT = 5002
+        print self.HOST
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.bind((self.HOST, self.PORT))
         self.s.listen(1)
@@ -83,8 +87,6 @@ class Window(Frame):
         self.lastPressed = "man"
 
     def sendstate(self):
-        #ER MOET NOG UITGEZOCHT WORDEN WELKE CHANNEL WAT IS PLUS SOMMIGE CHANNELS STAAN WAARSCHIJNLIJK PRECIES OMGEKEERD
-        #DAAR IS DUS DE STICK OMHOOG BIJV 0 IPV 1023
         datastring = str(self.joystickBus.readChannel(0)) + "-" + str(self.joystickBus.readChannel(1)) + "-" + str(self.joystickBus.readChannel(2)) + "-" + str(self.joystickBus.readChannel(3)) + "-" + self.lastPressed
         self.conn.send(datastring)
         print(datastring)
