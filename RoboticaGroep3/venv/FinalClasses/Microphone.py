@@ -8,12 +8,12 @@ class Microphone:
 
     @staticmethod
     def getInstance():
-        if Microphone.__instance == None:
+        if Microphone.__instance is None:
             Microphone()
         return Microphone.__instance
 
     def __init__(self):
-        if Microphone.__instance != None:
+        if Microphone.__instance is not None:
             raise Exception("This class is a singleton!")
         else:
             Microphone.__instance = self

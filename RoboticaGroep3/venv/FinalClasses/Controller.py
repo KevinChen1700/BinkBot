@@ -4,15 +4,17 @@ from Motor import Motor
 import RPi.GPIO as GPIO
 from time import sleep
 from AX12 import Ax12
+from Microphone import Microphone
 
-#runs the main loop
+# runs the main loop
 controller = Controller.getInstance()
 controller.run()
+
 
 class Controller:
     __instance = None
 
-    #controller is a singleton
+    # controller is a singleton
     @staticmethod
     def getInstance():
         if MovementController.__instance is None:
@@ -24,6 +26,7 @@ class Controller:
         GPIO.setmode(GPIO.BCM)
         self.remote = Remote.getInstance()
         self.mvcontroller = MovementController.getInstance()
+        self.microphone = Microphone.getInstance()
 
     def manualRoutine(self, actionList):
         self.mvcontroller.moveMotors(actionList[3], actionList[4])
@@ -38,7 +41,31 @@ class Controller:
         print("This function is still WIP")
 
     def lineDanceRoutine(self):
-        print("This function is still WIP")
+        low = self.microphone.getLowTone()
+        mid = self.microphone.getMidTone()
+        high = self.microphone.getHighTone()
+
+        if low > 50:
+            print "doing slow robot dance"
+            self.mvcontroller.moveMotors(1023, 0)
+            time.sleep(1)
+            self.mvcontroller.moveMotors(511, 0)
+            time.sleep(1)
+            self.mvcontroller.moveMotors(500, 0)
+            time.sleep(1)
+            self.mvcontroller.moveMotors(500, 0)
+            time.sleep(1)
+            self.mvcontroller.moveGripper(600, 0)
+            time.sleep(1)
+            self.mvcontroller.moveGripper(500, 0)
+            time.sleep(1)
+            self.mvcontroller.moveGripper(500, 0)
+
+        if mid and low > 50:
+            print "doing average robot dance"
+
+        if high and mid and low > 50:
+            print "doing fast robot dance"
 
     def survivalRunRoutine(self):
         print("This function is still WIP")
@@ -46,7 +73,7 @@ class Controller:
     def eggTelligenceRoutine(self):
         print("This function is still WIP")
 
-    #main loop
+    # main loop
     def run(self):
         while True:
             try:
