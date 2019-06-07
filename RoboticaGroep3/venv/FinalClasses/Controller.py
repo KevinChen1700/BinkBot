@@ -1,13 +1,11 @@
 from MovementController import MovementController
+
 from Remote import Remote
 from Motor import Motor
 import RPi.GPIO as GPIO
 from time import sleep
 from AX12 import Ax12
 
-#runs the main loop
-controller = Controller.getInstance()
-controller.run()
 
 class Controller:
     __instance = None
@@ -15,9 +13,9 @@ class Controller:
     #controller is a singleton
     @staticmethod
     def getInstance():
-        if MovementController.__instance is None:
-            MovementController()
-        return MovementController.__instance
+        if Controller.__instance is None:
+            Controller()
+        return Controller.__instance
 
     def __init__(self):
         Controller.__instance = self
@@ -26,10 +24,12 @@ class Controller:
         self.mvcontroller = MovementController.getInstance()
 
     def manualRoutine(self, actionList):
-        self.mvcontroller.moveMotors(actionList[3], actionList[4])
-        self.mvcontroller.moveGripper(actionList[2], actionList[1])
-        self.mvcontroller.moveLeftFrontWheel(1000)
-        self.mvcontroller.moveRightFrontWheel(1000)
+        print("Running manual routine.")
+        self.mvcontroller.moveMotors(int(actionList[2]), int(actionList[3]))
+        self.mvcontroller.moveGripper(int(actionList[1]), int(actionList[0]))
+        #self.mvcontroller.moveLeftFrontWheel(1000)
+        #self.mvcontroller.moveRightFrontWheel(1000)
+        
 
     def followBarRoutine(self):
         print("This function is still WIP")
@@ -49,31 +49,33 @@ class Controller:
     #main loop
     def run(self):
         while True:
-            try:
-                data = remote1.getSignal()
-                lastString = data.split("|")
-                actionList = lastString[-2].split("-")
-                action = actionList[-1]
+##            try:
+##
+##
+##            except:
+##                pass
+            data = self.remote.getSignal()
+            lastString = data.split("|")
+            actionList = lastString[-2].split("-")
+            action = actionList[-1]
 
-                if action == "man":
-                    self.manualRoutine(actionList)
 
-                if action == "blue":
-                    self.followBarRoutine()
+            if action == "man":
+                self.manualRoutine(actionList)
 
-                if action == "singleDance":
-                    self.singleDanceRoutine()
+            elif action == "blue":
+                self.followBarRoutine()
 
-                if action == "lineDanceRoutine":
-                    self.lineDanceRoutine()
+            elif action == "singleDance":
+                self.singleDanceRoutine()
 
-                if action == "survivalRunRoutine":
-                    self.survivalRunRoutine()
+            elif action == "lineDanceRoutine":
+                self.lineDanceRoutine()
 
-                if action == "eggTelligence":
-                    self.eggTelligenceRoutine()
+            elif action == "survivalRunRoutine":
+                self.survivalRunRoutine()
 
-            except:
-                pass
+            elif action == "eggTelligence":
+                self.eggTelligenceRoutine()
 
             sleep(0.001)  # The loop runs every 1ms
