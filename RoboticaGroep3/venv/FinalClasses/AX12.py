@@ -398,7 +398,7 @@ class Ax12:
         outData += chr(Ax12.AX_ACTION)
         outData += chr(Ax12.AX_ACTION_CHECKSUM)
         Ax12.port.write(outData)
-        #sleep(Ax12.TX_DELAY_TIME)
+        sleep(Ax12.TX_DELAY_TIME)
 
     def setTorqueStatus(self, id, status):
         self.direction(Ax12.RPI_DIRECTION_TX)
