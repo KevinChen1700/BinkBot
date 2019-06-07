@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a31b8ba-05e5-47b5-8b2a-e852f0bfee7b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/AX12.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/AX12.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/Controller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/FinalClasses/Motor.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/Motor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/MovementController.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/MovementController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/remote/Joystick.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/remote/Joystick.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+            <state relative-caret-position="421">
+              <caret line="32" column="25" lean-forward="true" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -332,12 +328,12 @@
       <workItem from="1558077450409" duration="22545000" />
       <workItem from="1558437252272" duration="204000" />
       <workItem from="1558437556494" duration="230000" />
-      <workItem from="1559891868281" duration="9148000" />
+      <workItem from="1559891868281" duration="10298000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72279000" />
+    <option name="totallyTimeSpent" value="73429000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -489,8 +485,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+        <state relative-caret-position="421">
+          <caret line="32" column="25" lean-forward="true" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
