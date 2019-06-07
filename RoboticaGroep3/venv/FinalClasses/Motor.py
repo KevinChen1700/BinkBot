@@ -29,16 +29,17 @@ class Motor:
 
         if self.direction != direction:
             self.speed = 0
+            if direction == "right":
+                GPIO.output(self.INA, 1)
+                GPIO.output(self.INB, 0)
+
+            elif direction == "left":
+                GPIO.output(self.INA, 0)
+                GPIO.output(self.INB, 1)
+            sleep(0.01)  # wait 10ms
 
         if (self.speed < 255) and (self.speed < speed):
             self.speed += speed * 0.01
 
-        if direction == "right":
-            GPIO.output(self.INA, 1)
-            GPIO.output(self.INB, 0)
 
-        elif direction == "left":
-            GPIO.output(self.INA, 0)
-            GPIO.output(self.INB, 1)
-        sleep(0.01)  # wait 10ms
         self.pi.set_PWM_dutycycle(self.PWM, self.speed)
