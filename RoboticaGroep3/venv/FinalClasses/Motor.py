@@ -10,19 +10,21 @@ class Motor:
         self.PWM = pinArray[0]
         self.INA = pinArray[1]
         self.INB = pinArray[2]
-        GPIO.setup(PWM, GPIO.OUT)
-        self.pi.set_mode(PWM, pigpio.OUTPUT)
-        GPIO.setup(INA, GPIO.OUT)
-        GPIO.setup(INB, GPIO.OUT)
+        GPIO.setup(self.PWM, GPIO.OUT)
+        self.pi.set_mode(self.PWM, pigpio.OUTPUT)
+        GPIO.setup(self.INA, GPIO.OUT)
+        GPIO.setup(self.INB, GPIO.OUT)
         self.pi.set_PWM_frequency(self.PWM, 100)
 
     def off(self):
         self.pi.set_PWM_dutycycle(self.PWM, 0)
 
     def move(self, direction, speed):
-        if self.speed > 0 & self.speed <= 20: # speeds between 0 and 20 are unsafe
+        speed = speed * 2.55
+        
+        if (speed > 0) and (speed <= 100): # speeds between 0 and 20 are unsafe
             speed = 0
-        if direction == "right" | direction == "r":
+        if (direction == "right") or (direction == "r"):
             GPIO.output(self.INA, 1)
             GPIO.output(self.INB, 0)
         else:
