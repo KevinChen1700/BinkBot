@@ -13,7 +13,7 @@ class Window(Frame):
 
     def __init__(self, master=None):
         BatteryValue.__instance = self
-        self.HOST = "141.252.29.24"
+        self.HOST = "141.252.217.182"
         self.PORT = 5002
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.connect((self.HOST, self.PORT))
