@@ -3,6 +3,7 @@ from Tkinter import *
 import RPi.GPIO as GPIO
 import socket
 from Joystick import Joystick
+from BatteryValue import BatteryValue
 import spidev
 import time
 import os
@@ -25,6 +26,7 @@ class Window(Frame):
         print 'Connected by', self.addr
         GPIO.setmode(GPIO.BCM)
         self.joystickBus = Joystick.getInstance()
+        self.battery = BatteryValue.getInstance()
         Frame.__init__(self, master)
         self.master = master
         self.init_window()
