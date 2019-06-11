@@ -3,7 +3,6 @@ from Tkinter import *
 import RPi.GPIO as GPIO
 import socket
 from Joystick import Joystick
-from BatteryValue import BatteryValue
 import spidev
 import time
 import os
@@ -12,15 +11,9 @@ import os
 class Window(Frame):
 
     def __init__(self, master=None):
-        BatteryValue.__instance = self
-        self.HOST = "141.252.217.182"
-        self.PORT = 5002
-        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s.connect((self.HOST, self.PORT))
-
         self.lastPressed = 'man'
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        self.s.connect(("8.8.8.8",80))
+        self.s.connect(("8.8.8.8", 80))
         self.HOST = self.s.getsockname()[0]
         self.PORT = 5002
         print self.HOST
@@ -32,12 +25,17 @@ class Window(Frame):
         print 'Connected by', self.addr
         GPIO.setmode(GPIO.BCM)
         self.joystickBus = Joystick.getInstance()
-        self.battery = BatteryValue.getInstance()
         Frame.__init__(self, master)
         self.master = master
         self.init_window()
 
     def init_window(self):
+        time.sleep(8)
+        self.HOST = "141.252.29.82"
+        self.PORT = 5002
+        self.s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s2.connect((self.HOST, self.PORT))
+
         # changing the title of our master widget
         self.master.title("GUI")
 
@@ -48,16 +46,16 @@ class Window(Frame):
         sdanceButton = Button(self, text="Single Dance", relief=RIDGE, bg="black", fg="white", command=self.client_sdance)
         sdanceButton.place(x=10, y=20)
 
-        ldanceButton = Button(self, text="Line Dance", relief=RIDGE, bg="black", fg="white", command=self.client_ldance)
+        ldanceButton = Button(self, text=" Line Dance ", relief=RIDGE, bg="black", fg="white", command=self.client_ldance)
         ldanceButton.place(x=10, y=70)
 
-        trapButton = Button(self, text="Survival Run", relief=RIDGE, bg="black", fg="white", command=self.client_trap)
+        trapButton = Button(self, text="Survival  Run", relief=RIDGE, bg="black", fg="white", command=self.client_trap)
         trapButton.place(x=140, y=20)
 
         eggButton = Button(self, text="Eggtelligence", relief=RIDGE, bg="black", fg="white", command=self.client_egg)
         eggButton.place(x=140, y=70)
 
-        blueButton = Button(self, text="Blue Bar", relief=RIDGE, bg="black", fg="white", command=self.client_blue)
+        blueButton = Button(self, text="  Blue  Bar  ", relief=RIDGE, bg="black", fg="white", command=self.client_blue)
         blueButton.place(x=270, y=20)
 
         manualButton = Button(self, text="Manual mode", relief=RIDGE, bg="black", fg="white", command=self.manual_mode)
@@ -67,6 +65,10 @@ class Window(Frame):
         global lbl
         lbl = Label(self, text="output scherm ", width=50, height=7, wraplength=300, bg="white")
         lbl.place(x=10, y=120)
+
+        global lbl2
+        lbl2 = Label(self, text="Accu", width=5, height=1, bg="white")
+        lbl2.place(x=10, y=230)
 
     # event handler voor als de buttons gedrukt zijn
     def client_sdance(self):
@@ -90,25 +92,37 @@ class Window(Frame):
         self.lastPressed = "blue"
 
     def manual_mode(self):
-        #lbl.config(text="cancelling current mode..")
+        # lbl.config(text="cancelling current mode..")
         self.lastPressed = "man"
 
     def sendstate(self):
-        datastring = str(self.joystickBus.readChannel(0)) + "-" + str(self.joystickBus.readChannel(1)) + "-" + str(self.joystickBus.readChannel(2)) + "-" + str(self.joystickBus.readChannel(3)) + "-" + self.lastPressed + "|"
+        datastring = str(self.joystickBus.readChannel(0)) + "-" + str(self.joystickBus.readChannel(1)) + "-" + str(
+            self.joystickBus.readChannel(2)) + "-" + str(self.joystickBus.readChannel(3)) + "-" + self.lastPressed + "|"
         self.conn.send(datastring)
         print(datastring)
 
     def getSignal(self):
-        temp = self.s.recv(4096)
+        temp = self.s2.recv(4096)
         return temp
-
 
 
 root = Tk()
 root.geometry("390x250")
 app = Window(root)
 while True:
-    lbl.config(text=Window.getSignal())
+    battery = int(Window.getSignal(app))
+    try:
+        if battery == 1023:
+            lbl2.config(bg="green")
+        elif battery < 980:
+            lbl2.config(bg="red")
+        else:
+            lbl2.config(bg="white")
+
+    except Exception:
+        print Exception
+        pass
+
     root.update_idletasks()
     root.update()
     Window.sendstate(app)

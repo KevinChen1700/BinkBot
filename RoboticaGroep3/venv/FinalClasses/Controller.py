@@ -56,50 +56,41 @@ class Controller:
         high = self.microphone.getHighTone()
 
         if low > 50:
-            print "doing slow robot dance"
+            print "low tone dance"
             #arm eerst boven, dan gripper open, sluiten, arm weer naar beneden
-            self.mvcontroller.moveGripper(280, 550)
+            self.mvcontroller.moveGripper(1023, 511)
             time.sleep(1)
-            self.mvcontroller.moveGripper(570, 550)
+            self.mvcontroller.moveGripper(1023, 1023)
             time.sleep(1)
-            self.mvcontroller.moveGripper(280, 550)
+            self.mvcontroller.moveGripper(1023, 511)
             time.sleep(1)
-            self.mvcontroller.moveGripper(280, 426)
+            self.mvcontroller.moveGripper(0, 511)
             time.sleep(1)
+            self.mvcontroller.moveGripper(0, 1023)
+            time.sleep(1)
+            self.mvcontroller.moveGripper(0, 511)
+            time.sleep(1)
+            self.mvcontroller.moveGripper(511, 511)
 
         if mid and low > 50:
             print "doing average robot dance"
-            self.mvcontroller.moveMotors(511, 1023)
-            time.sleep(0.5)
-            self.mvcontroller.moveMotors(511, 511)
-            time.sleep(0.5)
-            self.mvcontroller.moveMotors(0, 511)
-            time.sleep(0.5)
-            self.mvcontroller.moveMotors(511, 511)
-            time.sleep(0.5)
             self.mvcontroller.moveMotors(1023, 511)
-            time.sleep(0.5)
-            self.mvcontroller.moveMotors(511, 511)
-            time.skeep(0.5)
-            self.mvcontroller.moveMotors(0, 511)
-            time.sleep(0.5)
-            self.mvcontroller.moveMotors(511, 511)
-            time.sleep(0.5)
+
 
         if high and mid and low > 50:
             print "doing fast robot dance"
             #op en neer bewegen van armen, dan een paar rondjes draaien?
-            self.mvcontroller.moveGripper(280, 510)
+            self.mvcontroller.moveGripper(800, 511)
             time.sleep(0.1)
-            self.mvcontroller.moveGripper(280, 466)
+            self.mvcontroller.moveGripper(300, 511)
             time.sleep(0.1)
-            self.mvcontroller.moveGripper(280, 510)
+            self.mvcontroller.moveGripper(800, 511)
             time.sleep(0.1)
-            self.mvcontroller.moveGripper(280, 466)
+            self.mvcontroller.moveGripper(300, 511)
             time.sleep(0.1)
-            self.mvcontroller.moveGripper(280, 510)
+            self.mvcontroller.moveGripper(800, 511)
             time.sleep(0.1)
-            self.mvcontroller.moveGripper(280, 466)
+            self.mvcontroller.moveGripper(300, 511)
             time.sleep(0.1)
 
     def survivalRunRoutine(self):
