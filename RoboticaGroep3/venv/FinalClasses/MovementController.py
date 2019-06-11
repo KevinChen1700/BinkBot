@@ -13,7 +13,7 @@ class MovementController:
 
     def __init__(self):
         if MovementController.__instance != None:
-            raise Exception("This class is a singelton!")
+            raise Exception("This class is a singleton!")
         else:
             MovementController.__instance = self
             pinArray = [[16,5,6],[20,23,24]]
