@@ -57,25 +57,50 @@ class Controller:
 
         if low > 50:
             print "doing slow robot dance"
-            self.mvcontroller.moveMotors(1023, 0)
+            #arm eerst boven, dan gripper open, sluiten, arm weer naar beneden
+            self.mvcontroller.moveGripper(280, 550)
             time.sleep(1)
-            self.mvcontroller.moveMotors(511, 0)
+            self.mvcontroller.moveGripper(570, 550)
             time.sleep(1)
-            self.mvcontroller.moveMotors(500, 0)
+            self.mvcontroller.moveGripper(280, 550)
             time.sleep(1)
-            self.mvcontroller.moveMotors(500, 0)
+            self.mvcontroller.moveGripper(280, 426)
             time.sleep(1)
-            self.mvcontroller.moveGripper(600, 0)
-            time.sleep(1)
-            self.mvcontroller.moveGripper(500, 0)
-            time.sleep(1)
-            self.mvcontroller.moveGripper(500, 0)
 
         if mid and low > 50:
             print "doing average robot dance"
+            self.mvcontroller.moveMotors(511, 1023)
+            time.sleep(0.5)
+            self.mvcontroller.moveMotors(511, 511)
+            time.sleep(0.5)
+            self.mvcontroller.moveMotors(0, 511)
+            time.sleep(0.5)
+            self.mvcontroller.moveMotors(511, 511)
+            time.sleep(0.5)
+            self.mvcontroller.moveMotors(1023, 511)
+            time.sleep(0.5)
+            self.mvcontroller.moveMotors(511, 511)
+            time.skeep(0.5)
+            self.mvcontroller.moveMotors(0, 511)
+            time.sleep(0.5)
+            self.mvcontroller.moveMotors(511, 511)
+            time.sleep(0.5)
 
         if high and mid and low > 50:
             print "doing fast robot dance"
+            #op en neer bewegen van armen, dan een paar rondjes draaien?
+            self.mvcontroller.moveGripper(280, 510)
+            time.sleep(0.1)
+            self.mvcontroller.moveGripper(280, 466)
+            time.sleep(0.1)
+            self.mvcontroller.moveGripper(280, 510)
+            time.sleep(0.1)
+            self.mvcontroller.moveGripper(280, 466)
+            time.sleep(0.1)
+            self.mvcontroller.moveGripper(280, 510)
+            time.sleep(0.1)
+            self.mvcontroller.moveGripper(280, 466)
+            time.sleep(0.1)
 
     def survivalRunRoutine(self):
         print("This function is still WIP")
@@ -88,6 +113,7 @@ class Controller:
         while True:
             try:
                 data = self.remote.getSignal()
+                self.remote.sendString(str(self.microphone.getBattery()))
                 lastString = data.split("|")
                 actionList = lastString[-2].split("-")
                 action = actionList[-1]

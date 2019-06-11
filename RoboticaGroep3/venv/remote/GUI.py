@@ -12,6 +12,12 @@ import os
 class Window(Frame):
 
     def __init__(self, master=None):
+        BatteryValue.__instance = self
+        self.HOST = "141.252.29.24"
+        self.PORT = 5002
+        self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s.connect((self.HOST, self.PORT))
+
         self.lastPressed = 'man'
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.s.connect(("8.8.8.8",80))
@@ -84,7 +90,7 @@ class Window(Frame):
         self.lastPressed = "blue"
 
     def manual_mode(self):
-        lbl.config(text="cancelling current mode..")
+        #lbl.config(text="cancelling current mode..")
         self.lastPressed = "man"
 
     def sendstate(self):
@@ -92,12 +98,17 @@ class Window(Frame):
         self.conn.send(datastring)
         print(datastring)
 
+    def getSignal(self):
+        temp = self.s.recv(4096)
+        return temp
+
 
 
 root = Tk()
 root.geometry("390x250")
 app = Window(root)
 while True:
+    lbl.config(text=Window.getSignal())
     root.update_idletasks()
     root.update()
     Window.sendstate(app)

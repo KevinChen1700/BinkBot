@@ -27,7 +27,6 @@ class Remote:
             self.conn, self.addr = self.s2.accept()
             self.s2.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
             print 'Connected by', self.addr
-            self.battery = Microphone.getInstance()
 
             #connection to receive data from remote
             self.HOST = "141.252.29.24"
@@ -44,10 +43,9 @@ class Remote:
             self.lastpressed = temp
         return self.lastpressed
 
-    def sendBatteryValue(self):
-        value = str(self.battery.getBattery())
-        self.conn.send(value)
-        print("battery value: " + value)
+    def sendString(self, string):
+        self.conn.send(string)
+
 
 
 
