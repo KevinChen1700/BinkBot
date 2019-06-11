@@ -14,18 +14,20 @@ class Remote:
             print("Singleton class already has an instance")
         else:
             Remote.__instance = self
-            HOST = "141.252.230.54"
-            PORT = 5002
+            self.HOST = "141.252.29.24"
+            self.PORT = 5002
             self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            #this.s.connect((HOST, PORT))
+            self.s.connect((self.HOST, self.PORT))
             self.needsUpdate = False
             self.lastpressed = "test"
 
     def getSignal(self):
-        temp = self.s.recv(50)
-        if self.lastpressed == temp:
+        temp = self.s.recv(4096)
+        if not self.lastpressed == temp:
             self.needsUpdate = True
             self.lastpressed = temp
+        return self.lastpressed
+
 
 
 

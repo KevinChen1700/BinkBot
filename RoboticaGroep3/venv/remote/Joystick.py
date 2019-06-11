@@ -8,7 +8,7 @@ class Joystick:
 
     @staticmethod
     def getInstance():
-        if Joystick.__instance == None:
+        if Joystick.__instance is None:
             Joystick()
         return Joystick.__instance
 
