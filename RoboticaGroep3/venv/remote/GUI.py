@@ -6,13 +6,12 @@ from Joystick import Joystick
 import spidev
 import time
 import os
-import commands
 
 
 class Window(Frame):
 
     def __init__(self, master=None):
-        self.lastPressed = ' '
+        self.lastPressed = 'man'
         self.s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.s.connect(("8.8.8.8",80))
         self.HOST = self.s.getsockname()[0]
@@ -38,11 +37,11 @@ class Window(Frame):
         self.pack(fill=BOTH, expand=1)
 
         # creating a button instance
-        sdansButton = Button(self, text="Single Dans", relief=RIDGE, bg="black", fg="white", command=self.client_sdans)
-        sdansButton.place(x=10, y=20)
+        sdanceButton = Button(self, text="Single Dance", relief=RIDGE, bg="black", fg="white", command=self.client_sdance)
+        sdanceButton.place(x=10, y=20)
 
-        ldansButton = Button(self, text="Line Dans", relief=RIDGE, bg="black", fg="white", command=self.client_ldans)
-        ldansButton.place(x=10, y=70)
+        ldanceButton = Button(self, text="Line Dance", relief=RIDGE, bg="black", fg="white", command=self.client_ldance)
+        ldanceButton.place(x=10, y=70)
 
         trapButton = Button(self, text="Survival Run", relief=RIDGE, bg="black", fg="white", command=self.client_trap)
         trapButton.place(x=140, y=20)
@@ -50,8 +49,8 @@ class Window(Frame):
         eggButton = Button(self, text="Eggtelligence", relief=RIDGE, bg="black", fg="white", command=self.client_egg)
         eggButton.place(x=140, y=70)
 
-        flagButton = Button(self, text="Capture the flag", relief=RIDGE, bg="black", fg="white", command=self.client_flag)
-        flagButton.place(x=270, y=20)
+        blueButton = Button(self, text="Blue Bar", relief=RIDGE, bg="black", fg="white", command=self.client_blue)
+        blueButton.place(x=270, y=20)
 
         manualButton = Button(self, text="Manual mode", relief=RIDGE, bg="black", fg="white", command=self.manual_mode)
         manualButton.place(x=270, y=70)
@@ -62,32 +61,32 @@ class Window(Frame):
         lbl.place(x=10, y=120)
 
     # event handler voor als de buttons gedrukt zijn
-    def client_sdans(self):
-        lbl.config(text="doing single dans..")
-        self.lastPressed = "sdans"
+    def client_sdance(self):
+        lbl.config(text="doing single dance..")
+        self.lastPressed = "singleDance"
 
-    def client_ldans(self):
-        lbl.config(text="doing line dans..")
-        self.lastPressed = "ldans"
+    def client_ldance(self):
+        lbl.config(text="doing line dance..")
+        self.lastPressed = "lineDance"
 
     def client_trap(self):
         lbl.config(text="doing survival run..")
-        self.lastPressed = "srun"
+        self.lastPressed = "survivalRun"
 
     def client_egg(self):
         lbl.config(text="doing eggtelligence run..")
-        self.lastPressed = "etelligence"
+        self.lastPressed = "eggTelligence"
 
-    def client_flag(self):
-        lbl.config(text="doing capture the flag..")
-        self.lastPressed = "ctf"
+    def client_blue(self):
+        lbl.config(text="doing blue bar..")
+        self.lastPressed = "blue"
 
     def manual_mode(self):
         lbl.config(text="cancelling current mode..")
         self.lastPressed = "man"
 
     def sendstate(self):
-        datastring = str(self.joystickBus.readChannel(0)) + "-" + str(self.joystickBus.readChannel(1)) + "-" + str(self.joystickBus.readChannel(2)) + "-" + str(self.joystickBus.readChannel(3)) + "-" + self.lastPressed
+        datastring = str(self.joystickBus.readChannel(0)) + "-" + str(self.joystickBus.readChannel(1)) + "-" + str(self.joystickBus.readChannel(2)) + "-" + str(self.joystickBus.readChannel(3)) + "-" + self.lastPressed + "|"
         self.conn.send(datastring)
         print(datastring)
 
@@ -100,4 +99,4 @@ while True:
     root.update_idletasks()
     root.update()
     Window.sendstate(app)
-    time.sleep(0.1)
+    time.sleep(0.03)

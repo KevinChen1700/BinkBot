@@ -5,10 +5,9 @@ import sys
 
 class Joystick:
     __instance = None
-
     @staticmethod
     def getInstance():
-        if Joystick.__instance is None:
+        if Joystick.__instance == None:
             Joystick()
         return Joystick.__instance
 
@@ -48,7 +47,7 @@ class Joystick:
         adcValue = self.recvBits(12)
         # Set chip select high to end the read
         GPIO.output(self.CS, GPIO.HIGH)
-        return adcValue / 2
+        return adcValue/2
 
     def sendBits(self, data, numBits):
         data <<= (8 - numBits)
@@ -82,5 +81,6 @@ class Joystick:
             # Advance input to next bit
             retVal <<= 1
 
+        
         # Divide by two to drop the NULL bit
         return (retVal / 2)
