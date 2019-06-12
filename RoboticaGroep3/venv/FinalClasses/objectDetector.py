@@ -5,58 +5,50 @@ from picamera.array import PiRGBArray
 from picamera import PiCamera
 import sys
 from time import sleep
+
+
 class objectDetector:
     __instance = None
-
     @staticmethod
-    def getInstance():
+    def getInstance():  # function to get the only instance of this class since the class is a singleton
+        # if there isn't an instance of this class yet, create it
         if objectDetector.__instance is None:
             objectDetector()
+        # return this class's only instance
         return objectDetector.__instance
 
     def __init__(self):
-        if objectDetector.__instance != None:
+        if objectDetector.__instance is not None:  # if the constructor of this class is called more than once
             raise Exception("This class is a singleton!")
         else:
+            # puts the created instance in the "__instance" variable
             objectDetector.__instance = self
+            # creates a PiCamera instance to take pictures
             self.camera = PiCamera()
             self.camera.resolution = (640, 480)
             self.camera.framerate = 90
             self.stream = PiRGBArray(self.camera, size=(640, 480))
 
     def findBlueBar(self):
+        # lets the camera warm up
         sleep(0.1)
-        print("AbraKadabraAlakazam")
         # define range of blue color in HSV
         lower_blue = np.array([100, 150, 120])
         upper_blue = np.array([140, 255, 255])
 
+        # takes a picture
         self.camera.capture(self.stream, 'bgr', use_video_port=True)
 
+        # blurs the picture to remove noise
         blurred_frame = cv2.GaussianBlur(self.stream.array, (5, 5), 0)
-        hsv = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
-
+        hsv = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)  # converts the picture to hsv
+        # only leaves colors that are between lower and upper_blue in hsv values in the image
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
 
         contours, h = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-        x = 0
-        y = 0
-
         rect = 0, 0, 0, 0
         for contour in contours:
             rect = cv2.boundingRect(contour)
-
-            # Deze code kan weg na testen
-            x, y, w, h = rect
-            cv2.rectangle(self.stream.array, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            # tot hier
-
-        # Deze code kan weg na testen
-        print("X: " + str(x) + " Y: " + str(y))
-        cv2.drawContours(self.stream.array, contours, -1, (0, 255, 0), 3)
-        cv2.imshow("PiCamera", self.stream.array)
-        # tot hier
-
 
         # reset the stream before the next capture
         self.stream.seek(0)

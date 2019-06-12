@@ -1,5 +1,5 @@
 from Controller import Controller
 
-#runs the main loop
+# gets the instance of the Controller class and runs its main function
 controller = Controller.getInstance()
 controller.run()

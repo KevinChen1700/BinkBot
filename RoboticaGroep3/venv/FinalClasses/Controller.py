@@ -10,37 +10,40 @@ from Microphone import Microphone
 
 class Controller:
     __instance = None
-
-    # controller is a singleton
     @staticmethod
-    def getInstance():
+    def getInstance():  # function to get the only instance of this class since the class is a singleton
+        # if there isn't an instance of this class yet, create it
         if Controller.__instance is None:
             Controller()
+        # return this class's only instance
         return Controller.__instance
 
     def __init__(self):
-        if Controller.__instance != None:
+        if Controller.__instance != None:  # if the constructor of this class is called more than once
             raise Exception("This class is a singleton!")
         else:
+            # puts the created instance in the "__instance" variable
             Controller.__instance = self
             GPIO.setmode(GPIO.BCM)
             self.remote = Remote.getInstance()
             self.mvcontroller = MovementController.getInstance()
-            #self.objDetector = objectDetector.getInstance()
+            self.objDetector = objectDetector.getInstance()
             self.microphone = Microphone.getInstance()
+            self.prevLowToneValue = 0
+            self.prevJoyStickY = 1023 # temporary
 
     def manualRoutine(self, actionList):
         print("Running manual routine.")
         self.mvcontroller.moveMotors(int(actionList[2]), int(actionList[3]))
         self.mvcontroller.moveGripper(int(actionList[1]), int(actionList[0]))
-        # self.mvcontroller.moveLeftFrontWheel(1000)
-        # self.mvcontroller.moveRightFrontWheel(1000)
+        self.mvcontroller.moveLeftFrontWheel(1000)
+        self.mvcontroller.moveRightFrontWheel(1000)
+        sleep(0.001)
 
     def followBarRoutine(self):
         print("This function is still WIP")
         x, y, w, h = self.objDetector.findBlueBar()
         if x == 0:
-            print("beun")
             self.mvcontroller.moveMotors(511, 511)
         elif x < 310:
             self.mvcontroller.moveMotors(0, 511)
@@ -57,6 +60,16 @@ class Controller:
 
     def lineDanceRoutine(self):
         print("This function is still WIP")
+        temp = self.microphone.getLowTone()
+
+        if (temp - 60) > self.prevLowToneValue:
+            print("test")
+            self.mvcontroller.moveGripper(0, 511)
+            self.prevJoyStickY = 0
+            sleep(0.4)
+        else:
+            self.mvcontroller.moveGripper(1023, 511)
+        self.prevLowToneValue = temp
 
     def survivalRunRoutine(self):
         print("This function is still WIP")
@@ -68,6 +81,7 @@ class Controller:
     def run(self):
         while True:
             try:
+                # test of dit persé uit moet tijdens dans en autonoom of dat de delay klein genoeg is als er geen sleeps zitten in de remote
                 self.remote.sendString(str(self.microphone.getBattery()))
                 data = self.remote.getSignal()
                 lastString = data.split("|")
@@ -83,16 +97,14 @@ class Controller:
                 elif action == "singleDance":
                     self.singleDanceRoutine()
 
-                elif action == "lineDanceRoutine":
+                elif action == "lineDance":
                     self.lineDanceRoutine()
 
-                elif action == "survivalRunRoutine":
+                elif action == "survivalRun":
                     self.survivalRunRoutine()
 
                 elif action == "eggTelligence":
                     self.eggTelligenceRoutine()
-
-                sleep(0.001)  # The loop runs every 1ms
 
             except Exception:
                 pass
