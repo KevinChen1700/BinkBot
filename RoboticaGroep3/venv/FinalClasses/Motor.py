@@ -26,7 +26,7 @@ class Motor:
 
         if self.direction != direction:
             self.direction = direction
-            self.speed = 80
+            self.speed = 0
             self.pi.set_PWM_dutycycle(self.PWM, 0)
             sleep(0.01)  # wait 10ms
             if direction == "right":

@@ -5,6 +5,7 @@ from Motor import Motor
 import RPi.GPIO as GPIO
 from time import sleep
 from AX12 import Ax12
+from Microphone import Microphone
 
 
 class Controller:
@@ -25,7 +26,8 @@ class Controller:
             GPIO.setmode(GPIO.BCM)
             self.remote = Remote.getInstance()
             self.mvcontroller = MovementController.getInstance()
-            self.objDetector = objectDetector.getInstance()
+            #self.objDetector = objectDetector.getInstance()
+            self.microphone = Microphone.getInstance()
 
     def manualRoutine(self, actionList):
         print("Running manual routine.")
@@ -36,13 +38,18 @@ class Controller:
 
     def followBarRoutine(self):
         print("This function is still WIP")
-        x, y, w, h = objDetector.findBlueBar()
-
-        if x < 310:
+        x, y, w, h = self.objDetector.findBlueBar()
+        if x == 0:
+            print("beun")
+            self.mvcontroller.moveMotors(511, 511)
+        elif x < 310:
             self.mvcontroller.moveMotors(0, 511)
 
         elif x > 330:
             self.mvcontroller.moveMotors(1023, 511)
+
+        sleep(0.03333333)
+        
 
 
     def singleDanceRoutine(self):
@@ -61,6 +68,7 @@ class Controller:
     def run(self):
         while True:
             try:
+                self.remote.sendString(str(self.microphone.getBattery()))
                 data = self.remote.getSignal()
                 lastString = data.split("|")
                 actionList = lastString[-2].split("-")
@@ -87,5 +95,4 @@ class Controller:
                 sleep(0.001)  # The loop runs every 1ms
 
             except Exception:
-                print Exception + (" WOEEPSIEEEFLOEEEEPSIEEE")
                 pass

@@ -1,3 +1,10 @@
+import os
+import cv2
+import numpy as np
+from picamera.array import PiRGBArray
+from picamera import PiCamera
+import sys
+from time import sleep
 class objectDetector:
     __instance = None
 
@@ -18,6 +25,8 @@ class objectDetector:
             self.stream = PiRGBArray(self.camera, size=(640, 480))
 
     def findBlueBar(self):
+        sleep(0.1)
+        print("AbraKadabraAlakazam")
         # define range of blue color in HSV
         lower_blue = np.array([100, 150, 120])
         upper_blue = np.array([140, 255, 255])

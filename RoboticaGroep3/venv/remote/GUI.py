@@ -30,6 +30,12 @@ class Window(Frame):
         self.init_window()
 
     def init_window(self):
+        time.sleep(0.1)
+        self.HOST = "141.252.217.182"
+        self.PORT = 5002
+        self.s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.s2.connect((self.HOST, self.PORT))
+        
         # changing the title of our master widget
         self.master.title("GUI")
 
@@ -59,6 +65,10 @@ class Window(Frame):
         global lbl
         lbl = Label(self, text="output scherm ", width=50, height=7, wraplength=300, bg="white")
         lbl.place(x=10, y=120)
+
+        global lbl2
+        lbl2 = Label(self, text="Accu", width=5, height=1, bg="white")
+        lbl2.place(x=10, y=230)
 
     # event handler voor als de buttons gedrukt zijn
     def client_sdance(self):
@@ -90,13 +100,33 @@ class Window(Frame):
         self.conn.send(datastring)
         print(datastring)
 
+    def getSignal(self):
+        temp = self.s2.recv(4096)
+        return temp
+
 
 
 root = Tk()
 root.geometry("390x250")
 app = Window(root)
 while True:
+    battery = Window.getSignal(app)
+    lbl.config(text=battery)
+    
     root.update_idletasks()
     root.update()
     Window.sendstate(app)
+    try:
+        if (int(battery) == 1023):
+            lbl2.config(bg="green")
+            print("LOLXDDDD1")
+        elif (int(battery) < 981):
+            lbl2.config(bg="red")
+            print("LOLXDDDD2")
+        else:
+            lbl2.config(bg="blue")
+            print("LOLXDDDD3")
+
+    except Exception:
+        pass
     time.sleep(0.03)
