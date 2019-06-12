@@ -96,8 +96,7 @@ class Window(Frame):
         self.lastPressed = "man"
 
     def sendstate(self):
-        datastring = str(self.joystickBus.readChannel(0)) + "-" + str(self.joystickBus.readChannel(1)) + "-" + str(
-            self.joystickBus.readChannel(2)) + "-" + str(self.joystickBus.readChannel(3)) + "-" + self.lastPressed + "|"
+        datastring = str(self.joystickBus.readChannel(0)) + "-" + str(self.joystickBus.readChannel(1)) + "-" + str(self.joystickBus.readChannel(2)) + "-" + str(self.joystickBus.readChannel(3)) + "-" + self.lastPressed + "|"
         self.conn.send(datastring)
         print(datastring)
 

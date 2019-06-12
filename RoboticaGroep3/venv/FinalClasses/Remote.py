@@ -1,8 +1,9 @@
 import socket
-from Microphone import Microphone
+
 
 class Remote:
     __instance = None
+
     @staticmethod
     def getInstance():
         if Remote.__instance == None:
@@ -14,8 +15,15 @@ class Remote:
             print("Singleton class already has an instance")
         else:
             Remote.__instance = self
+            # connection to receive data from remote
+            self.HOST = "141.252.29.24"
+            self.PORT = 5002
+            self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.s.connect((self.HOST, self.PORT))
+            self.needsUpdate = False
+            self.lastpressed = "test"
 
-            #connection to send data to remote
+            # connection to send data to remote
             self.s2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
             self.s2.connect(("8.8.8.8", 80))
             self.HOST = self.s2.getsockname()[0]
@@ -28,14 +36,6 @@ class Remote:
             self.s2.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
             print 'Connected by', self.addr
 
-            #connection to receive data from remote
-            self.HOST = "141.252.29.24"
-            self.PORT = 5002
-            self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.s.connect((self.HOST, self.PORT))
-            self.needsUpdate = False
-            self.lastpressed = "test"
-
     def getSignal(self):
         temp = self.s.recv(4096)
         if not self.lastpressed == temp:
@@ -45,6 +45,10 @@ class Remote:
 
     def sendString(self, string):
         self.conn.send(string)
+
+
+
+
 
 
 

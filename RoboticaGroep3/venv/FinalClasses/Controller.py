@@ -103,8 +103,8 @@ class Controller:
     def run(self):
         while True:
             try:
-                data = self.remote.getSignal()
                 self.remote.sendString(str(self.microphone.getBattery()))
+                data = self.remote.getSignal()
                 lastString = data.split("|")
                 actionList = lastString[-2].split("-")
                 action = actionList[-1]
