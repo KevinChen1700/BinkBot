@@ -19,11 +19,11 @@ class objectDetector:
             raise Exception("This class is a singleton!")
         else:
             objectDetector.__instance = self
-            # self.camera = PiCamera()
-            # self.camera.resolution = (640, 480)
-            # self.camera.framerate = 90
-            # self.stream = PiRGBArray(self.camera, size=(640, 480))
-            self.cap = cv2.VideoCapture(0)
+            self.camera = PiCamera()
+            self.camera.resolution = (640, 480)
+            self.camera.framerate = 90
+            self.stream = PiRGBArray(self.camera, size=(640, 480))
+            #self.cap = cv2.VideoCapture(0)
 
     def findBlueBar(self):
 
@@ -36,11 +36,9 @@ class objectDetector:
 
         ret, frame = self.cap.read()
 
-        # self.camera.capture(self.stream, 'bgr', use_video_port=True)
-        #  blurred_frame = cv2.GaussianBlur(self.stream.array, (5, 5), 0)
-        blurred_frame = cv2.GaussianBlur(frame, (5, 5), 0)
+        self.camera.capture(self.stream, 'bgr', use_video_port=True)
+        blurred_frame = cv2.GaussianBlur(self.stream.array, (5, 5), 0)
 
-        # hsv = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
         hsv = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
 
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
@@ -62,16 +60,13 @@ class objectDetector:
             # Deze code kan weg na testen
             x, y, w, h = rect
             track_window = (x, y, w, h)
-            # cv2.rectangle(self.stream.array, (x, y), (x + w, y + h), (0, 255, 0), 2)
-            cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-
+            cv2.rectangle(self.stream.array, (x, y), (x + w, y + h), (0, 255, 0), 2)
         # tot hier
 
         # Deze code kan weg na testen
         print("X: " + str(x) + " Y: " + str(y))
         if (ret == True):
-            # dst = cv.calcBackProject(self.stream.array, [0], roi_hist, [0, 180], 1)
-            dst = cv2.calcBackProject(frame, [0], roi_hist, [0, 180], 1)
+            dst = cv.calcBackProject(self.stream.array, [0], roi_hist, [0, 180], 1)
 
             # apply meanshift to get the new location
             ret, track_window = cv2.CamShift(dst, track_window, term_crit)
@@ -79,18 +74,16 @@ class objectDetector:
             # Draw it on image
             pts = cv2.boxPoints(ret)
             pts = np.int0(pts)
-            # img2 = cv.polylines(self.stream.array,[pts],True, 255,2)
-            img2 = cv2.polylines(frame, [pts], True, 255, 2)
+            img2 = cv.polylines(self.stream.array,[pts],True, 255,2)
 
-            # cv2.drawContours(self.stream.array, contours, -1, (0, 255, 0), 3)
-            cv2.drawContours(frame, contours, -1, (0, 255, 0), 3)
+            cv2.drawContours(self.stream.array, contours, -1, (0, 255, 0), 3)
             # cv2.imshow("PiCamera", self.stream.array)
             #cv2.imshow("PiCamera", frame)
             # tot hier
 
             # reset the stream before the next capture
-            # self.stream.seek(0)
-            # self.stream.truncate()
+            self.stream.seek(0)
+            self.stream.truncate()
             print("voor return")
             return frame
 
