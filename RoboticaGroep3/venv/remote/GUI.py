@@ -37,8 +37,8 @@ class Window(Frame):
         # socket connection to get data from the pi of the robot
         self.HOST = "141.252.217.182"
         self.PORT = 5002
-        self.s2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.s2.connect((self.HOST, self.PORT))
+        self.srecv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.srecv.connect((self.HOST, self.PORT))
 
         # change the title of the app
         self.master.title("GUI")
@@ -109,7 +109,7 @@ class Window(Frame):
 
     # function to get the battery voltage value of the pi inside the robot
     def getSignal(self):
-        temp = self.s2.recv(4096)
+        temp = self.srecv.recv(4096)
         return temp
 
 
@@ -124,10 +124,10 @@ while True:
     root.update()
     Window.sendstate(app)
     try:
-        if (int(battery) == 1023):   # changes the background color of the battery label to green when value is 1023
+        if int(battery) == 1023:   # changes the background color of the battery label to green when value is 1023
             lbl2.config(bg="green")
         # changes the background color of the battery label to red when value is lower than 981
-        elif (int(battery) < 981):
+        elif int(battery) < 981:
             lbl2.config(bg="red")
         else:
             lbl2.config(bg="blue")  # changes the background color of the battery label to blue when no value is read

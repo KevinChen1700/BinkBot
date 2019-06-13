@@ -1,11 +1,13 @@
 from MovementController import MovementController
-from objectDetector import objectDetector
+from ObjectDetector import ObjectDetector
 from Remote import Remote
 from Motor import Motor
 import RPi.GPIO as GPIO
 from time import sleep
 from AX12 import Ax12
 from Microphone import Microphone
+from LedStrip import LedStrip
+from neopixel import *
 
 
 class Controller:
@@ -24,13 +26,19 @@ class Controller:
         else:
             # puts the created instance in the "__instance" variable
             Controller.__instance = self
+            self.cameraBool = True
             GPIO.setmode(GPIO.BCM)
             self.remote = Remote.getInstance()
             self.mvcontroller = MovementController.getInstance()
-            self.objDetector = objectDetector.getInstance()
+            try:  # try catch so the program can still run if the camera is not plugged in
+                self.objDetector = ObjectDetector.getInstance()
+            except Exception:
+                self.cameraBool = False
+                pass
+
             self.microphone = Microphone.getInstance()
+            self.ledStrip = LedStrip(16, 13)
             self.prevLowToneValue = 0
-            self.prevJoyStickY = 1023 # temporary
 
     def manualRoutine(self, actionList):
         print("Running manual routine.")
@@ -65,10 +73,11 @@ class Controller:
         if (temp - 60) > self.prevLowToneValue:
             print("test")
             self.mvcontroller.moveGripper(0, 511)
-            self.prevJoyStickY = 0
+            self.ledStrip.setColor(Color(233, 255, 0))
             sleep(0.4)
         else:
             self.mvcontroller.moveGripper(1023, 511)
+            self.ledStrip.setColor(Color(0, 0, 0))
         self.prevLowToneValue = temp
 
     def survivalRunRoutine(self):
@@ -91,10 +100,10 @@ class Controller:
                 if action == "man":
                     self.manualRoutine(actionList)
 
-                elif action == "blue":
+                elif action == "blue" and self.cameraBool:
                     self.followBarRoutine()
 
-                elif action == "singleDance":
+                elif action == "singleDance" and self.cameraBool:
                     self.singleDanceRoutine()
 
                 elif action == "lineDance":
@@ -103,7 +112,7 @@ class Controller:
                 elif action == "survivalRun":
                     self.survivalRunRoutine()
 
-                elif action == "eggTelligence":
+                elif action == "eggTelligence" and self.cameraBool:
                     self.eggTelligenceRoutine()
 
             except Exception:

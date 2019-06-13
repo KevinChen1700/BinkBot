@@ -7,22 +7,22 @@ import sys
 from time import sleep
 
 
-class objectDetector:
+class ObjectDetector:
     __instance = None
     @staticmethod
     def getInstance():  # function to get the only instance of this class since the class is a singleton
         # if there isn't an instance of this class yet, create it
-        if objectDetector.__instance is None:
-            objectDetector()
+        if ObjectDetector.__instance is None:
+            ObjectDetector()
         # return this class's only instance
         return objectDetector.__instance
 
     def __init__(self):
-        if objectDetector.__instance is not None:  # if the constructor of this class is called more than once
+        if ObjectDetector.__instance is not None:  # if the constructor of this class is called more than once
             raise Exception("This class is a singleton!")
         else:
             # puts the created instance in the "__instance" variable
-            objectDetector.__instance = self
+            ObjectDetector.__instance = self
             # creates a PiCamera instance to take pictures
             self.camera = PiCamera()
             self.camera.resolution = (640, 480)

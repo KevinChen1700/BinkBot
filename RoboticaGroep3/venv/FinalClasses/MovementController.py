@@ -33,8 +33,14 @@ class MovementController:
             self.rightFrontWheel = Servo(self.servos, 2, 280, 574, 110)
 
     def moveGripper(self, x, y):  # function to move the servos in the gripper
-        self.armServo.move(y)
-        self.gripServo.move(x)
+        try:  # try catches in case the gripper is not plugged in the robot or one of the servos has timed out
+            self.armServo.move(y)
+        except Exception:
+            pass
+        try:
+            self.gripServo.move(x)
+        except Exception:
+            pass
 
     def moveLeftFrontWheel(self, y):  # function to move the servo that moves the left front wheel
         self.leftFrontWheel.move(y)
