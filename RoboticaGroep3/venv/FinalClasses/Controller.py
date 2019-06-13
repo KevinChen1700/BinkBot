@@ -27,6 +27,7 @@ class Controller:
             # puts the created instance in the "__instance" variable
             Controller.__instance = self
             self.cameraBool = True
+            self.previousRoutine = " "
             GPIO.setmode(GPIO.BCM)
             self.remote = Remote.getInstance()
             self.mvcontroller = MovementController.getInstance()
@@ -72,11 +73,11 @@ class Controller:
 
         if (temp - 60) > self.prevLowToneValue:
             print("test")
-            self.mvcontroller.moveGripper(0, 511)
+            #self.mvcontroller.moveGripper(0, 511)
             self.ledStrip.setColor(Color(233, 255, 0))
-            sleep(0.4)
+            #sleep(0.4)
         else:
-            self.mvcontroller.moveGripper(1023, 511)
+            #self.mvcontroller.moveGripper(1023, 511)
             self.ledStrip.setColor(Color(0, 0, 0))
         self.prevLowToneValue = temp
 
@@ -86,17 +87,28 @@ class Controller:
     def eggTelligenceRoutine(self):
         print("This function is still WIP")
 
+    def resetState(self):
+        sleep(0.1)
+        self.mvcontroller.moveGripper(1023, 1023)
+        self.mvcontroller.moveMotors(511, 511)
+        self.mvController.moveLeftFrontWheel(1023)
+        self.mvController.moveRightFrontWheel(1023)
+        self.ledStrip.setColor(Color(0, 0, 0))
+        sleep(2)
+
     # main loop
     def run(self):
         while True:
             try:
-                # test of dit persé uit moet tijdens dans en autonoom of dat de delay klein genoeg is als er geen sleeps zitten in de remote
+                # test of dit perse uit moet tijdens dans en autonoom of dat de delay klein genoeg is als er geen sleeps zitten in de remote
                 self.remote.sendString(str(self.microphone.getBattery()))
                 data = self.remote.getSignal()
                 lastString = data.split("|")
                 actionList = lastString[-2].split("-")
                 action = actionList[-1]
-
+                if self.previousRoutine != action:
+                    self.previousRoutine = action
+                    self.resetState()
                 if action == "man":
                     self.manualRoutine(actionList)
 

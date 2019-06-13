@@ -6,8 +6,6 @@ import argparse
 class LedStrip:
 
     def __init__(self, led_count, led_pin):
-        # puts the created instance in the "__instance" variable
-        LedController.__instance = self
         # LED strip configuration:
         self.LED_COUNT = led_count  # Number of LED pixels.
         self.LED_PIN = led_pin  # GPIO pin connected to the pixels (18 uses PWM!).

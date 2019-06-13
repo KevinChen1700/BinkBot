@@ -18,7 +18,7 @@ class Remote:
             # puts the created instance in the "__instance" variable
             Remote.__instance = self
             # connection to receive data from remote
-            self.HOST = "192.168.1.2"
+            self.HOST = "192.168.1.3"
             self.PORT = 5002
             self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.s.connect((self.HOST, self.PORT))
