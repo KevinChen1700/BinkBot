@@ -33,8 +33,8 @@ class objectDetector:
         # lets the camera warm up
         sleep(0.1)
         # define range of blue color in HSV
-        lower_blue = np.array([100, 150, 120])
-        upper_blue = np.array([140, 255, 255])
+        lower_blue = np.array([85, 120, 100])
+        upper_blue = np.array([130, 255, 255])
 
         # takes a picture
         self.camera.capture(self.stream, 'bgr', use_video_port=True)

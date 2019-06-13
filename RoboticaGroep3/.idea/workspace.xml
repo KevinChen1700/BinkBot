@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a31b8ba-05e5-47b5-8b2a-e852f0bfee7b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/Controller.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/Controller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/Microphone.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/Microphone.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/Motor.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/Motor.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/MovementController.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/MovementController.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/Remote.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/Remote.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/Servo.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/Servo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/ServoTest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/FinalClasses/objectDetector.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/objectDetector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/FinalClasses/run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/FinalClasses/servodegree.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/remote/GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/remote/GUI.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,7 +16,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/FinalClasses/DistanceSensor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
+            <state relative-caret-position="238">
               <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -37,7 +28,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
+            <state relative-caret-position="697">
               <caret line="43" column="73" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
@@ -49,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Microphone.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-106">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="34">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -69,20 +60,14 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/remote/GUI.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-820">
-              <folding>
-                <element signature="e#24#45#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/FinalClasses/MovementController.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="114" />
+            <state relative-caret-position="17">
+              <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -90,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/venv/FinalClasses/objectDetector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="68" />
+            <state relative-caret-position="561">
+              <caret line="36" column="39" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="39" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -102,14 +87,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="80" column="18" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#49#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="85">
+              <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -172,17 +154,17 @@
         <option value="$PROJECT_DIR$/venv/FinalClasses/Servo.py" />
         <option value="$PROJECT_DIR$/venv/FinalClasses/run.py" />
         <option value="$PROJECT_DIR$/venv/FinalClasses/Remote.py" />
-        <option value="$PROJECT_DIR$/venv/FinalClasses/objectDetector.py" />
         <option value="$PROJECT_DIR$/venv/FinalClasses/MovementController.py" />
         <option value="$PROJECT_DIR$/venv/FinalClasses/Microphone.py" />
         <option value="$PROJECT_DIR$/venv/remote/GUI.py" />
         <option value="$PROJECT_DIR$/venv/FinalClasses/Controller.py" />
+        <option value="$PROJECT_DIR$/venv/FinalClasses/objectDetector.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="width" value="1919" />
-    <option name="height" value="1029" />
+    <option name="width" value="1920" />
+    <option name="height" value="1030" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -365,18 +347,19 @@
       <workItem from="1559891868281" duration="10631000" />
       <workItem from="1559912874358" duration="596000" />
       <workItem from="1559913628608" duration="470000" />
-      <workItem from="1560343545026" duration="5840000" />
+      <workItem from="1560343545026" duration="6486000" />
+      <workItem from="1560411885133" duration="86000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85713000" />
+    <option name="totallyTimeSpent" value="86445000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1494638" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15147454" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -490,13 +473,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/servo4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/servo4.py" />
     <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Servo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -514,9 +491,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/servodegree.py" />
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/ServoTest.py" />
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/testloop.py" />
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/DistanceSensor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Motor.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
+        <state relative-caret-position="697">
           <caret line="43" column="73" selection-start-line="43" selection-start-column="73" selection-end-line="43" selection-end-column="73" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
@@ -526,28 +516,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Microphone.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-106">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="34">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/DistanceSensor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="27" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/remote/Joystick.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -559,18 +532,26 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/remote/GUI.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-820">
-          <folding>
-            <element signature="e#24#45#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/remote/Joystick.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="33" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/FinalClasses/MovementController.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="16" column="55" selection-start-line="16" selection-start-column="55" selection-end-line="16" selection-end-column="114" />
+        <state relative-caret-position="17">
+          <caret line="15" column="23" lean-forward="true" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
@@ -579,41 +560,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/FinalClasses/objectDetector.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="68" />
+        <state relative-caret-position="561">
+          <caret line="36" column="39" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="39" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/servodegree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/ServoTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/testloop.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/FinalClasses/Controller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="80" column="18" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
