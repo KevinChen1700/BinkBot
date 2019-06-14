@@ -63,3 +63,61 @@ class objectDetector:
         self.stream.truncate()
 
         return rect
+
+    def findContainer(self, color):
+        sleep(0.1)
+        while True:
+            ret, frame = self.cap.read()
+
+            blurred_frame = cv2.GaussianBlur(frame, (5, 5), 0)
+            hsv = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
+
+            if color == "red":
+
+                self.color = [0, 150, 50], [10, 255, 255], [160, 150, 50], [179, 255, 255]
+                mask1 = cv2.inRange(hsv, np.array(self.color[0]), np.array(self.color[1]))
+
+                mask2 = cv2.inRange(hsv, np.array(self.color[2]), np.array(self.color[3]))
+                mask = mask1 | mask2
+
+            if color == "blue":
+                self.color = [100, 150, 0], [140, 255, 255]
+
+            if color == "yellow":
+                self.color = [23, 41, 110], [50, 255, 255]
+
+            if color == "gray":
+                self.color = [0, 10, 90], [180, 40, 160]
+
+            # Color is not red
+            if len(self.color) < 3:
+                mask = cv2.inRange(hsv, np.array(self.color[0]), np.array(self.color[1]))
+
+            contours, h = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
+            x = 0
+            y = 0
+
+            rect = 0, 0, 0, 0
+            for contour in contours:
+                rect = cv2.boundingRect(contour)
+                if 200 < cv2.contourArea(contour) > 4000 and cv2.contourArea(contour) < 15000:
+                    # Deze code kan weg na testen
+                    x, y, w, h = rect
+                    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+                    # tot hier
+
+            # Deze code kan weg na testen
+            print("X: " + str(x) + " Y: " + str(y))
+            #cv2.drawContours(frame, contours, -1, (0, 255, 0), 3)
+            cv2.imshow("PiCamera", frame)
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        self.cap.release()
+            # tot hier
+
+
+            # reset the stream before the next capture
+            #self.stream.seek(0)
+            #self.stream.truncate()
+
