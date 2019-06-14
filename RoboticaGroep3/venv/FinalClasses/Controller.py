@@ -98,7 +98,12 @@ class Controller:
         print("This function is still WIP")
 
     def eggTelligenceRoutine(self):
-        print("This function is still WIP")
+        print("This function is still WIP, needs buttons in UI to choose color and which qr to scan")
+        color = ""
+        x, y, w, h = self.objDetector.findContainer(color)
+        qrCode = self.objDetector.qrScanner()
+
+        sleep(0.03333333)
 
     def resetState(self):
         sleep(0.1)
