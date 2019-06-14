@@ -63,6 +63,11 @@ class Controller:
 
     def eggTelligenceRoutine(self):
         print("This function is still WIP")
+        color = ""
+        x, y, w, h = self.objDetector.findContainer(color)
+        qrCode = self.objDetector.qrScanner()
+
+        sleep(0.03333333)
 
     # main loop
     def run(self):
