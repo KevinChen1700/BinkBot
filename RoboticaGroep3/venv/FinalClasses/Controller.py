@@ -69,19 +69,30 @@ class Controller:
 
     def lineDanceRoutine(self):
         print("This function is still WIP")
-        temp = self.microphone.getLowTone()
+        low = self.microphone.getLowTone()
+        #mid = self.microphone.getMidTone()
+        #high = self.microphone.getHighTone()
 
         # nog min en max angle en de speed van de servos aanpassen als de robot aan het dansen is
         # if (temp - 60) > self.prevLowToneValue:
-        if (temp - 60) > 0:
+        if low > 60:
             print("test")
             self.mvcontroller.moveGripper(0, 511)
-            self.ledStrip.setColor(Color(233, 255, 0))
+            self.ledStrip.setColor(Color(0, 255, 0))
             sleep(0.25)
+
+        #elif high > 60:
+        #    self.ledStrip.setColor(Color(233, 255, 0))
+
+        #elif mid > 60:
+        #   self.ledStrip.setColor(Color(255, 0, 0))
+
         else:
-            self.mvcontroller.moveGripper(1023, 511)
             self.ledStrip.setColor(Color(0, 0, 0))
-        self.prevLowToneValue = temp
+            self.mvcontroller.moveGripper(1023, 511)
+
+        #if low < 60:
+        #    self.mvcontroller.moveGripper(1023, 511)
 
     def survivalRunRoutine(self):
         print("This function is still WIP")
@@ -95,7 +106,7 @@ class Controller:
         self.mvcontroller.moveMotors(511, 511)
         self.mvController.moveLeftFrontWheel(1023)
         self.mvController.moveRightFrontWheel(1023)
-        self.ledStrip.setColor(Color(0, 0, 0))
+        self.ledStrip.setColor(Color(0, 0, 255))
         sleep(2)
 
     # main loop
@@ -108,6 +119,7 @@ class Controller:
                 lastString = data.split("|")
                 actionList = lastString[-2].split("-")
                 action = actionList[-1]
+
                 if self.previousRoutine != action:
                     self.previousRoutine = action
                     self.resetState()
