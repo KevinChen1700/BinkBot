@@ -71,13 +71,15 @@ class Controller:
         print("This function is still WIP")
         temp = self.microphone.getLowTone()
 
-        if (temp - 60) > self.prevLowToneValue:
+        # nog min en max angle en de speed van de servos aanpassen als de robot aan het dansen is
+        # if (temp - 60) > self.prevLowToneValue:
+        if (temp - 60) > 0:
             print("test")
-            #self.mvcontroller.moveGripper(0, 511)
+            self.mvcontroller.moveGripper(0, 511)
             self.ledStrip.setColor(Color(233, 255, 0))
-            #sleep(0.4)
+            sleep(0.25)
         else:
-            #self.mvcontroller.moveGripper(1023, 511)
+            self.mvcontroller.moveGripper(1023, 511)
             self.ledStrip.setColor(Color(0, 0, 0))
         self.prevLowToneValue = temp
 
