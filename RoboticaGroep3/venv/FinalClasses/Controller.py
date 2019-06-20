@@ -27,18 +27,24 @@ class Controller:
             # puts the created instance in the "__instance" variable
             Controller.__instance = self
             self.cameraBool = True
+            self.ledBool = True
             self.previousRoutine = " "
+            self.actionList = [511, 511, 511, 511, "man"]
             GPIO.setmode(GPIO.BCM)
             self.remote = Remote.getInstance()
             self.mvcontroller = MovementController.getInstance()
+            self.microphone = Microphone.getInstance()
             try:  # try catch so the program can still run if the camera is not plugged in
                 self.objDetector = ObjectDetector.getInstance()
             except Exception:
                 self.cameraBool = False
                 pass
+            try:  # try catch so the program can still run if the camera is not plugged in
+                self.ledStrip = LedStrip(16, 13)
+            except Exception:
+                self.ledBool = False
+                pass
 
-            self.microphone = Microphone.getInstance()
-            self.ledStrip = LedStrip(16, 13)
             self.prevLowToneValue = 0
 
     def manualRoutine(self, actionList):
@@ -78,7 +84,8 @@ class Controller:
         if low > 60:
             print("test")
             self.mvcontroller.moveGripper(0, 511)
-            self.ledStrip.setColor(Color(0, 255, 0))
+            if self.ledBool:
+                self.ledStrip.setColor(Color(0, 255, 0))
             sleep(0.25)
 
         #elif high > 60:
@@ -88,7 +95,8 @@ class Controller:
         #   self.ledStrip.setColor(Color(255, 0, 0))
 
         else:
-            self.ledStrip.setColor(Color(0, 0, 0))
+            if self.ledBool:
+                self.ledStrip.setColor(Color(0, 0, 0))
             self.mvcontroller.moveGripper(1023, 511)
 
         #if low < 60:
@@ -111,19 +119,22 @@ class Controller:
         self.mvcontroller.moveMotors(511, 511)
         self.mvController.moveLeftFrontWheel(1023)
         self.mvController.moveRightFrontWheel(1023)
-        self.ledStrip.setColor(Color(0, 0, 255))
+        if self.ledBool:
+            self.ledStrip.setColor(Color(0, 0, 255))
         sleep(2)
+
+    def updateActionList(self):
+        # test of dit perse uit moet tijdens dans en autonoom of dat de delay klein genoeg is als er geen sleeps zitten in de remote
+        self.remote.sendString(str(self.microphone.getBattery()))
+        data = self.remote.getSignal()
+        lastString = data.split("|")
+        self.actionList = lastString[-2].split("-")
 
     # main loop
     def run(self):
         while True:
             try:
-                # test of dit perse uit moet tijdens dans en autonoom of dat de delay klein genoeg is als er geen sleeps zitten in de remote
-                self.remote.sendString(str(self.microphone.getBattery()))
-                data = self.remote.getSignal()
-                lastString = data.split("|")
-                actionList = lastString[-2].split("-")
-                action = actionList[-1]
+                action = self.actionList[-1]
 
                 if self.previousRoutine != action:
                     self.previousRoutine = action
