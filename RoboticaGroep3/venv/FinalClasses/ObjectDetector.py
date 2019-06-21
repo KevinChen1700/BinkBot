@@ -65,9 +65,10 @@ class ObjectDetector:
         #returns four values of the rectangle
         return rect
 
-    #Detect blacklines for linedancing and eggtelligence, currently work in progress
+    # Detect blacklines for linedancing and eggtelligence, currently work in progress
     def blackLineDetector(self):
         sleep(0.1)
+        returnbool = False
 
         # start picamera recording
         self.camera.capture(self.stream, 'bgr', use_video_port=True)
@@ -88,15 +89,17 @@ class ObjectDetector:
         for contour in contours:
             print(cv2.contourArea(contours[index]))
             area = cv2.contourArea(contours[index])
-            if area > 200 and area < 6000:
+            if area > 5000:
                 rect = cv2.boundingRect(contour)
                 # Deze code kan weg na testen
                 x, y, w, h = rect
                 cv2.rectangle(roi, (x, y), (x + w, y + h), (0, 255, 0), 2)
                 cv2.drawContours(roi, contours[index], -1, (0, 255, 0), 3)
                 print(area)
+                returnbool = True
 
         index = index + 1
+        return returnbool
 
     #detect colored containers for eggtelligence
     def findContainer(self, color):

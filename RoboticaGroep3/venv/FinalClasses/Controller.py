@@ -73,6 +73,7 @@ class Controller:
     def singleDanceRoutine(self):
         print("This function is still WIP")
 
+
     def lineDanceRoutine(self):
         print("This function is still WIP")
         low = self.microphone.getLowTone()
@@ -121,10 +122,10 @@ class Controller:
         self.mvController.moveRightFrontWheel(1023)
         if self.ledBool:
             self.ledStrip.setColor(Color(0, 0, 255))
+        # danceroutines uit als die aanstonden
         sleep(2)
 
     def updateActionList(self):
-        # test of dit perse uit moet tijdens dans en autonoom of dat de delay klein genoeg is als er geen sleeps zitten in de remote
         self.remote.sendString(str(self.microphone.getBattery()))
         data = self.remote.getSignal()
         lastString = data.split("|")
@@ -139,8 +140,10 @@ class Controller:
                 if self.previousRoutine != action:
                     self.previousRoutine = action
                     self.resetState()
+                    # zet danceroutine aan als action single dance is
+
                 if action == "man":
-                    self.manualRoutine(actionList)
+                    self.manualRoutine(self.actionList)
 
                 elif action == "blue" and self.cameraBool:
                     self.followBarRoutine()
