@@ -27,42 +27,35 @@ class ObjectDetector:
             # creates a PiCamera instance to take pictures
             self.camera = PiCamera()
             self.camera.resolution = (640, 480)
-            self.camera.framerate = 90
+            self.camera.rotation = 270
             self.stream = PiRGBArray(self.camera, size=(640, 480))
 
     #detect blue bar
     def findBlueBar(self):
         # lets the camera warm up
-        sleep(0.1)
+        sleep(0.0)
         # define range of blue color in HSV
         lower_blue = np.array([85, 120, 100])
         upper_blue = np.array([130, 255, 255])
 
-        # start picamera recording
+        # takes a picture
         self.camera.capture(self.stream, 'bgr', use_video_port=True)
 
-        #blur and convert bgr format of video to hsv
+        # blurs the picture to remove noise
         blurred_frame = cv2.GaussianBlur(self.stream.array, (5, 5), 0)
-        hsv = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
-        #apply mask leaving only colors between the lower and upper value visible
+        hsv = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)  # converts the picture to hsv
+        # only leaves colors that are between lower and upper_blue in hsv values in the image
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
-        #find contours in the masked frame
+
         contours, h = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
         rect = 0, 0, 0, 0
-        #apply a rectangle to every contour found
         for contour in contours:
             rect = cv2.boundingRect(contour)
-
-        # Code to print x and y values and to display an image on screen. Is being currently used for testing
-        print("X: " + str(x) + " Y: " + str(y))
-        cv2.drawContours(self.stream.array, contours, -1, (0, 255, 0), 3)
-        cv2.imshow("PiCamera", self.stream.array)
 
         # reset the stream before the next capture
         self.stream.seek(0)
         self.stream.truncate()
-
-        #returns four values of the rectangle
+        print(rect)
         return rect
 
     # Detect blacklines for linedancing and eggtelligence, currently work in progress

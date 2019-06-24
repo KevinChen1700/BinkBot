@@ -20,7 +20,7 @@ class MovementController:
             # puts the created instance in the "__instance" variable
             MovementController.__instance = self
             # array that holds the pins of all the motors
-            pinArray = [[16, 5, 6], [20, 23, 24]]
+            pinArray = [[20, 23, 24], [16, 5, 6]]
             # creates instances of the Motor class to control the physical motors
             self.leftMotor = Motor(pinArray[0])
             self.rightMotor = Motor(pinArray[1])
@@ -29,8 +29,6 @@ class MovementController:
             # creates instances of the Servo class to control the physical servos
             self.armServo = Servo(self.servos, 3, 426, 576, 100)
             self.gripServo = Servo(self.servos, 4, 280, 574, 512)
-            self.leftFrontWheel = Servo(self.servos, 1, 426, 576, 110)
-            self.rightFrontWheel = Servo(self.servos, 2, 280, 574, 110)
 
     def moveGripper(self, x, y):  # function to move the servos in the gripper
         try:  # try catches in case the gripper is not plugged in the robot or one of the servos has timed out
@@ -41,12 +39,6 @@ class MovementController:
             self.gripServo.move(x)
         except Exception:
             pass
-
-    def moveLeftFrontWheel(self, y):  # function to move the servo that moves the left front wheel
-        self.leftFrontWheel.move(y)
-
-    def moveRightFrontWheel(self, y):  # function to move the servo that moves the right front wheel
-        self.rightFrontWheel.move(y)
     
     def moveMotors(self, x, y):
         # turns the value from the joystick (0 up to 1023) into a value between -100 and 100

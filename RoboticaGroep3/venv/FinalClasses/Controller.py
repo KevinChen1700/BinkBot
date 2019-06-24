@@ -8,6 +8,7 @@ from AX12 import Ax12
 from Microphone import Microphone
 from LedStrip import LedStrip
 from neopixel import *
+import threading
 
 
 class Controller:
@@ -40,7 +41,7 @@ class Controller:
                 self.cameraBool = False
                 pass
             try:  # try catch so the program can still run if the camera is not plugged in
-                self.ledStrip = LedStrip(16, 13)
+                self.ledStrip = LedStrip(16, 19)
             except Exception:
                 self.ledBool = False
                 pass
@@ -51,12 +52,10 @@ class Controller:
         print("Running manual routine.")
         self.mvcontroller.moveMotors(int(actionList[2]), int(actionList[3]))
         self.mvcontroller.moveGripper(int(actionList[1]), int(actionList[0]))
-        self.mvcontroller.moveLeftFrontWheel(1000)
-        self.mvcontroller.moveRightFrontWheel(1000)
         sleep(0.001)
 
     def followBarRoutine(self):
-        print("This function is still WIP")
+        # code vanaf pi ophalen
         x, y, w, h = self.objDetector.findBlueBar()
         if x == 0:
             self.mvcontroller.moveMotors(511, 511)
@@ -118,8 +117,6 @@ class Controller:
         sleep(0.1)
         self.mvcontroller.moveGripper(1023, 1023)
         self.mvcontroller.moveMotors(511, 511)
-        self.mvController.moveLeftFrontWheel(1023)
-        self.mvController.moveRightFrontWheel(1023)
         if self.ledBool:
             self.ledStrip.setColor(Color(0, 0, 255))
         # danceroutines uit als die aanstonden
@@ -133,6 +130,11 @@ class Controller:
 
     # main loop
     def run(self):
+        connectionThread = threading.Thread(target=updateActionList, args=())
+        connectionThread.start()
+        motorThread = threading.Thread(target=motorLoop, args=())
+        motorThread.start()
+
         while True:
             try:
                 action = self.actionList[-1]
