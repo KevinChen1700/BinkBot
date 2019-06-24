@@ -55,17 +55,22 @@ class Controller:
         sleep(0.001)
 
     def followBarRoutine(self):
-        # code vanaf pi ophalen
+        print("This function is still WIP")
         x, y, w, h = self.objDetector.findBlueBar()
         if x == 0:
             self.mvcontroller.moveMotors(511, 511)
-        elif x < 310:
+            print("nu niet bewegen!")
+        elif x < 300:
             self.mvcontroller.moveMotors(0, 511)
 
-        elif x > 330:
+        elif x > 400:
             self.mvcontroller.moveMotors(1023, 511)
+            # 1023=naar rechts
+        else:
+            self.mvcontroller.moveMotors(511, 511)
+            print("nu niet bewegen!")
 
-        sleep(0.03333333)
+        sleep(0.00)
         
 
 
