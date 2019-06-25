@@ -31,10 +31,14 @@ class Controller:
             self.ledBool = True
             self.previousRoutine = " "
             self.actionList = [511, 511, 511, 511, "man"]
+            self.motorState = [511, 511]
             GPIO.setmode(GPIO.BCM)
             self.remote = Remote.getInstance()
             self.mvcontroller = MovementController.getInstance()
             self.microphone = Microphone.getInstance()
+            self.beatCount = 0
+            self.prevLow = 0
+            self.forward = False
             try:  # try catch so the program can still run if the camera is not plugged in
                 self.objDetector = ObjectDetector.getInstance()
             except Exception:
@@ -50,7 +54,7 @@ class Controller:
 
     def manualRoutine(self, actionList):
         print("Running manual routine.")
-        self.mvcontroller.moveMotors(int(actionList[2]), int(actionList[3]))
+        self.motorState = [int(actionList[2]), int(actionList[3])]
         self.mvcontroller.moveGripper(int(actionList[1]), int(actionList[0]))
         sleep(0.001)
 
@@ -71,15 +75,38 @@ class Controller:
             print("nu niet bewegen!")
 
         sleep(0.00)
-        
+
+    def moveSwitch(self):
+        if self.forward:
+            print("moveswitchfor")
+            self.forward = not self.foward
+            self.mvcontroller.moveGripper(0, 511)
+            self.motorState = [511, 1023]
+            if self.ledBool:
+                self.ledStrip.setColor(Color(0, 255, 0))
+
+        else:
+            print("moveswitchback")
+            self.forward = not self.foward
+            self.mvcontroller.moveGripper(1023, 511)
+            self.motorState = [511, 0]
+            if self.ledBool:
+                self.ledStrip.setColor(Color(0, 0, 0))
 
 
     def singleDanceRoutine(self):
-        print("This function is still WIP")
-
+        print("singleDance function is still WIP")
+        low = self.microphone.getLowTone()
+        if (low - self.prevLow) > 50:
+            print("ja")
+            self.beatCount += 1
+            if self.beatCount % 2 == 0:
+                print("moveswitch")
+                moveSwitch()
+        self.prevLow = low
 
     def lineDanceRoutine(self):
-        print("This function is still WIP")
+        print("lineDance function is still WIP")
         low = self.microphone.getLowTone()
         #mid = self.microphone.getMidTone()
         #high = self.microphone.getHighTone()
@@ -128,16 +155,21 @@ class Controller:
         sleep(2)
 
     def updateActionList(self):
-        self.remote.sendString(str(self.microphone.getBattery()))
-        data = self.remote.getSignal()
-        lastString = data.split("|")
-        self.actionList = lastString[-2].split("-")
+        while True:
+            self.remote.sendString(str(self.microphone.getBattery()))
+            data = self.remote.getSignal()
+            lastString = data.split("|")
+            self.actionList = lastString[-2].split("-")
+
+    def motorLoop(self):
+        while True:
+            self.mvcontroller.moveMotors(self.motorState[0], self.motorState[1])
 
     # main loop
     def run(self):
-        connectionThread = threading.Thread(target=updateActionList, args=())
+        connectionThread = threading.Thread(target=self.updateActionList, args=())
         connectionThread.start()
-        motorThread = threading.Thread(target=motorLoop, args=())
+        motorThread = threading.Thread(target=self.motorLoop, args=())
         motorThread.start()
 
         while True:
