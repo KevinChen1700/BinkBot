@@ -7,32 +7,36 @@ from picamera import PiCamera
 import sys
 from time import sleep
 
-class objectDetector:
-    __instance = None
 
+class ObjectDetector:
+    __instance = None
     @staticmethod
-    def getInstance():
-        if objectDetector.__instance is None:
-            objectDetector()
+    def getInstance():  # function to get the only instance of this class since the class is a singleton
+        # if there isn't an instance of this class yet, create it
+        if ObjectDetector.__instance is None:
+            ObjectDetector()
+        # return this class's only instance
         return objectDetector.__instance
 
     def __init__(self):
-        if objectDetector.__instance != None:
+        if ObjectDetector.__instance is not None:  # if the constructor of this class is called more than once
             raise Exception("This class is a singleton!")
         else:
-            objectDetector.__instance = self
+            # puts the created instance in the "__instance" variable
+            ObjectDetector.__instance = self
+            # creates a PiCamera instance to take pictures
             self.camera = PiCamera()
             self.camera.resolution = (640, 480)
             self.camera.framerate = 90
             self.stream = PiRGBArray(self.camera, size=(640, 480))
-            self.color = 0
 
     #detect blue bar
     def findBlueBar(self):
+        # lets the camera warm up
         sleep(0.1)
         # define range of blue color in HSV
-        lower_blue = np.array([100, 150, 120])
-        upper_blue = np.array([140, 255, 255])
+        lower_blue = np.array([85, 120, 100])
+        upper_blue = np.array([130, 255, 255])
 
         # start picamera recording
         self.camera.capture(self.stream, 'bgr', use_video_port=True)
@@ -44,9 +48,6 @@ class objectDetector:
         mask = cv2.inRange(hsv, lower_blue, upper_blue)
         #find contours in the masked frame
         contours, h = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
-        x = 0
-        y = 0
-
         rect = 0, 0, 0, 0
         #apply a rectangle to every contour found
         for contour in contours:
@@ -97,10 +98,8 @@ class objectDetector:
 
         index = index + 1
 
-        return rect
-
     #detect colored containers for eggtelligence
-    def findContainer(self, colorChoice):
+    def findContainer(self, color):
         sleep(0.1)
 
         # start picamera recording
@@ -111,24 +110,24 @@ class objectDetector:
         hsv = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
 
         #Check what color needs to be detected, based on that value it will define color range
-        if colorChoice == "red":
+        if color == "red":
             self.color = [0, 150, 50], [10, 255, 255], [160, 150, 50], [179, 255, 255]
             mask1 = cv2.inRange(hsv, np.array(self.color[0]), np.array(self.color[1]))
 
             mask2 = cv2.inRange(hsv, np.array(self.color[2]), np.array(self.color[3]))
             mask = mask1 | mask2
 
-        if colorChoice == "blue":
+        if color == "blue":
             self.color = [100, 150, 0], [140, 255, 255]
 
-        elif colorChoice == "yellow":
+        if color == "yellow":
             self.color = [23, 41, 110], [50, 255, 255]
 
-        elif colorChoice == "gray":
+        if color == "gray":
             self.color = [0, 10, 90], [180, 40, 160]
 
         # Color is not red, because red uses two masks
-        elif len(self.color) < 3:
+        if len(self.color) < 3:
             mask = cv2.inRange(hsv, np.array(self.color[0]), np.array(self.color[1]))
 
         # find contours in the masked frame
@@ -174,3 +173,30 @@ class objectDetector:
         self.stream.truncate()
 
         return coordsQR, zbarData
+    def eggDetector(self):
+        lower_white = np.array([0, 0, 180])
+        upper_white = np.array([180, 200, 255])
+
+        # code to get white from video feed
+        # done before finding ellipses so finding ellipses is limited to white ones
+        self.camera.capture(self.stream, 'bgr', use_video_port=True)
+        blurred_frame = cv2.GaussianBlur(self.stream, (5, 5), 0)
+        hsv = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv, lower_white, upper_white)
+
+        canny_output = cv2.Canny(mask, 255, 255 * 3)
+
+        contours, _ = cv2.findContours(canny_output, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+        rect = 0, 0, 0, 0
+        for i, contour in enumerate(contours):
+            color = (15, (0, 256), 15, (0, 256), 15, (0, 256))
+            # contour, the contour or some shit idk, it draws weird lines or some shit
+            if 50 < cv2.contourArea(contour) > 400:
+                #cv2.drawContours(drawing, contours, i, color)
+                if contour.shape[0] > 5:
+                    # ellipse, drawing the ellipses around detected shit
+                    rect = cv2.boundingRect(contour)
+                    # Deze code kan weg na testen
+                    x, y, w, h = rect
+        return rect
