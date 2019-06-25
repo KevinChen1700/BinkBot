@@ -38,7 +38,7 @@ class Controller:
             self.microphone = Microphone.getInstance()
             self.beatCount = 0
             self.prevLow = 0
-            self.forward = False
+            self.forward = 0
             try:  # try catch so the program can still run if the camera is not plugged in
                 self.objDetector = ObjectDetector.getInstance()
             except Exception:
@@ -62,39 +62,48 @@ class Controller:
         print("This function is still WIP")
         x, y, w, h = self.objDetector.findBlueBar()
         if x == 0:
-            self.mvcontroller.moveMotors(511, 511)
+            self.motorState = [511, 511]
             print("nu niet bewegen!")
         elif x < 300:
-            self.mvcontroller.moveMotors(0, 511)
+            self.motorState = [0, 511]
 
         elif x > 400:
-            self.mvcontroller.moveMotors(1023, 511)
-            # 1023=naar rechts
+            self.motorState = [1023, 511]
         else:
-            self.mvcontroller.moveMotors(511, 511)
+            self.motorState = [511, 511]
             print("nu niet bewegen!")
 
         sleep(0.00)
 
     def moveSwitch(self):
-        if self.forward:
+        if self.forward == 0:
             print("moveswitchfor")
-            self.forward = not self.foward
+            self.forward = 1
             self.mvcontroller.moveGripper(0, 511)
             self.motorState = [511, 1023]
             if self.ledBool:
                 self.ledStrip.setColor(Color(0, 255, 0))
 
-        else:
+        elif self.forward == 1:
             print("moveswitchback")
-            self.forward = not self.foward
+            self.forward = 2
             self.mvcontroller.moveGripper(1023, 511)
             self.motorState = [511, 0]
             if self.ledBool:
                 self.ledStrip.setColor(Color(0, 0, 0))
 
+        elif self.forward == 2:
+            print("moveswitchturn")
+            self.forward = 0
+            self.mvcontroller.moveGripper(1023, 511)
+            self.motorState = [1023, 511]
+            if self.ledBool:
+                self.ledStrip.setColor(Color(0, 0, 0))
+
 
     def singleDanceRoutine(self):
+        if self.objdetector.blackLineDetector():
+            self.motorState = [511, 0]
         print("singleDance function is still WIP")
         low = self.microphone.getLowTone()
         if (low - self.prevLow) > 50:
@@ -103,6 +112,8 @@ class Controller:
             if self.beatCount % 2 == 0:
                 print("moveswitch")
                 moveSwitch()
+            else:
+                self.motorState = [511, 511]
         self.prevLow = low
 
     def lineDanceRoutine(self):
@@ -148,7 +159,7 @@ class Controller:
     def resetState(self):
         sleep(0.1)
         self.mvcontroller.moveGripper(1023, 1023)
-        self.mvcontroller.moveMotors(511, 511)
+        self.motorState = [511, 511]
         if self.ledBool:
             self.ledStrip.setColor(Color(0, 0, 255))
         # danceroutines uit als die aanstonden
