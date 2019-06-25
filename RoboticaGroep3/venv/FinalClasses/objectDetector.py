@@ -7,7 +7,6 @@ from picamera import PiCamera
 import sys
 from time import sleep
 
-
 class objectDetector:
     __instance = None
 
@@ -26,6 +25,7 @@ class objectDetector:
             self.camera.resolution = (640, 480)
             self.camera.framerate = 90
             self.stream = PiRGBArray(self.camera, size=(640, 480))
+            self.color = 0
 
     #detect blue bar
     def findBlueBar(self):
@@ -97,8 +97,10 @@ class objectDetector:
 
         index = index + 1
 
+        return rect
+
     #detect colored containers for eggtelligence
-    def findContainer(self, color):
+    def findContainer(self, colorChoice):
         sleep(0.1)
 
         # start picamera recording
@@ -109,24 +111,24 @@ class objectDetector:
         hsv = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
 
         #Check what color needs to be detected, based on that value it will define color range
-        if color == "red":
+        if colorChoice == "red":
             self.color = [0, 150, 50], [10, 255, 255], [160, 150, 50], [179, 255, 255]
             mask1 = cv2.inRange(hsv, np.array(self.color[0]), np.array(self.color[1]))
 
             mask2 = cv2.inRange(hsv, np.array(self.color[2]), np.array(self.color[3]))
             mask = mask1 | mask2
 
-        if color == "blue":
+        if colorChoice == "blue":
             self.color = [100, 150, 0], [140, 255, 255]
 
-        if color == "yellow":
+        elif colorChoice == "yellow":
             self.color = [23, 41, 110], [50, 255, 255]
 
-        if color == "gray":
+        elif colorChoice == "gray":
             self.color = [0, 10, 90], [180, 40, 160]
 
         # Color is not red, because red uses two masks
-        if len(self.color) < 3:
+        elif len(self.color) < 3:
             mask = cv2.inRange(hsv, np.array(self.color[0]), np.array(self.color[1]))
 
         # find contours in the masked frame
@@ -163,7 +165,12 @@ class objectDetector:
             zbarData = decodedObjects[0].data
         else:
             zbarData = ''
+
+        points = decodedObjects.polygon
+        cX = (points[0].x + points[1].x + points[2].x + points[3].x) / 4
+        cY = (points[0].y + points[1].y + points[2].y + points[3].y) / 4
+        coordsQR = [cX, cY]
         self.stream.seek(0)
         self.stream.truncate()
 
-        return zbarData
+        return coordsQR, zbarData

@@ -26,7 +26,7 @@ class Controller:
             GPIO.setmode(GPIO.BCM)
             self.remote = Remote.getInstance()
             self.mvcontroller = MovementController.getInstance()
-            #self.objDetector = objectDetector.getInstance()
+            # self.objDetector = objectDetector.getInstance()
             self.microphone = Microphone.getInstance()
 
     def manualRoutine(self, actionList):
@@ -49,8 +49,6 @@ class Controller:
             self.mvcontroller.moveMotors(1023, 511)
 
         sleep(0.03333333)
-        
-
 
     def singleDanceRoutine(self):
         print("This function is still WIP")
@@ -63,11 +61,73 @@ class Controller:
 
     def eggTelligenceRoutine(self):
         print("This function is still WIP, needs buttons in UI to choose color and which qr to scan")
+        distance = self.DistanceSensor.calcDistance()
         color = ""
         x, y, w, h = self.objDetector.findContainer(color)
-        qrCode = self.objDetector.qrScanner()
+        eggCoords, qrCodeData = self.objDetector.qrScanner()
+        # inital movement to get in the eggtelligence field
+        if self.startMovement is False:
+            self.mvcontroller.moveMotors(0, 1023)
+            # straight forward for 1 second, currently a placeholder
+            sleep(1)
+            self.startMovement = True
 
-        sleep(0.03333333)
+        # code to look for egg after a the initial start movement, also know as MAIN LOOP where everything happens
+        if self.startMovement is True:
+            # chicken detection above all, so if it finds no egg and no QR it is the chicken
+            if distance < 10 and self.objDetector.qrScanner[0][0] == 0 and self.objDetector.egg == 0:
+                print("rotate left")
+            elif self.objDetector.blackLinedetector[0] < 50:
+                print("rotate right 90 degrees")
+            elif self.objDetector.blackLinedetector[0] > 300:
+                print("rotate left 90 degrees")
+            elif self.objDetector.blackLinedetector[1] < 50:
+                print("rotate 180")
+            else:
+                # start looking for an egg
+                print("rotate the robot around its axis until it finds something")
+                # if it has found an egg
+                if self.ObjectDetector.egg != 0:
+                    if self.objDetector.egg < 200:
+                        print("drive to the left")
+                        self.mvcontroller.moveMotors(0, 511)
+                    elif self.objDetector.egg > 400:
+                        print("drive to the right")
+                        self.mvcontroller.moveMotors(1023, 511)
+                    elif 200 > self.objDetector.egg > 400:
+                        print("drive forward")
+                        self.mvcontroller.moveMotors(511, 1023)
+                    if distance < 10 and self.eggGrabbed is False:
+                        print("then make it use the gripper to pick it up")
+                        self.eggGrabbed = True
+
+                # an egg has been grabbed and needs tp be dropped off
+                if self.eggGrabbed is True:
+                    print("look for the container by spinning")
+                    print(" if nothing found drive x amount up to a blackline and repeat")
+                    if self.objDetector.qrScanner[1] == self.cityString:
+                        print("city drop off found")
+                        # the qr is to the left, gets first value of qrScanner. This is an array with x and y coords of the QR code, we'll take the x value which is also [0]
+                        if self.objDetector.qrScanner[0][0] < 200:
+                            print("drive to the left")
+                            self.mvcontroller.moveMotors(0, 511)
+                            if distance < 10 :
+                                print("drop egg")
+                                self.eggGrabbed == False
+                        elif self.objDetector.qrScanner[0][0] > 400:
+                            print("drive to the right")
+                            self.mvcontroller.moveMotors(1023, 511)
+                            if distance < 10 :
+                                print("drop egg")
+                                self.eggGrabbed == False
+                        elif 200 > self.objDetector.qrScanner[0][0] > 400:
+                            print("drive forward")
+                            self.mvcontroller.moveMotors(511, 1023)
+                            if distance < 10 :
+                                print("drop egg")
+                                self.eggGrabbed == False
+
+                sleep(0.03333333)
 
     # main loop
     def run(self):
